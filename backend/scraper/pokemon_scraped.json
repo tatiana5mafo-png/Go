@@ -1,0 +1,4100 @@
+[
+  {
+    "pokedex_number": 1,
+    "name": "Bulbasaur",
+    "slug": "bulbasaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 45,
+    "base_attack": 49,
+    "base_defense": 49,
+    "sp_attack": 65,
+    "sp_defense": 65,
+    "speed": 45,
+    "total_stats": 318,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/bulbasaur.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 2,
+    "name": "Ivysaur",
+    "slug": "ivysaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 60,
+    "base_attack": 62,
+    "base_defense": 63,
+    "sp_attack": 80,
+    "sp_defense": 80,
+    "speed": 60,
+    "total_stats": 405,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/ivysaur.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/ivysaur.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 3,
+    "name": "Venusaur",
+    "slug": "venusaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 80,
+    "base_attack": 82,
+    "base_defense": 83,
+    "sp_attack": 100,
+    "sp_defense": 100,
+    "speed": 80,
+    "total_stats": 525,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/venusaur.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/venusaur.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 4,
+    "name": "Charmander",
+    "slug": "charmander",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 39,
+    "base_attack": 52,
+    "base_defense": 43,
+    "sp_attack": 60,
+    "sp_defense": 50,
+    "speed": 65,
+    "total_stats": 309,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/charmander.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 5,
+    "name": "Charmeleon",
+    "slug": "charmeleon",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 58,
+    "base_attack": 64,
+    "base_defense": 58,
+    "sp_attack": 80,
+    "sp_defense": 65,
+    "speed": 80,
+    "total_stats": 405,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/charmeleon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/charmeleon.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 6,
+    "name": "Charizard",
+    "slug": "charizard",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "base_hp": 78,
+    "base_attack": 84,
+    "base_defense": 78,
+    "sp_attack": 109,
+    "sp_defense": 85,
+    "speed": 100,
+    "total_stats": 534,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/charizard.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/charizard.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 7,
+    "name": "Squirtle",
+    "slug": "squirtle",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 44,
+    "base_attack": 48,
+    "base_defense": 65,
+    "sp_attack": 50,
+    "sp_defense": 64,
+    "speed": 43,
+    "total_stats": 314,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/squirtle.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 8,
+    "name": "Wartortle",
+    "slug": "wartortle",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 59,
+    "base_attack": 63,
+    "base_defense": 80,
+    "sp_attack": 65,
+    "sp_defense": 80,
+    "speed": 58,
+    "total_stats": 405,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/wartortle.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/wartortle.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 9,
+    "name": "Blastoise",
+    "slug": "blastoise",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 79,
+    "base_attack": 83,
+    "base_defense": 100,
+    "sp_attack": 85,
+    "sp_defense": 105,
+    "speed": 78,
+    "total_stats": 530,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/blastoise.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 10,
+    "name": "Caterpie",
+    "slug": "caterpie",
+    "types": [
+      "Bug"
+    ],
+    "base_hp": 45,
+    "base_attack": 30,
+    "base_defense": 35,
+    "sp_attack": 20,
+    "sp_defense": 20,
+    "speed": 45,
+    "total_stats": 195,
+    "base_catch_rate": 0.5,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/caterpie.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/caterpie.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 11,
+    "name": "Metapod",
+    "slug": "metapod",
+    "types": [
+      "Bug"
+    ],
+    "base_hp": 50,
+    "base_attack": 20,
+    "base_defense": 55,
+    "sp_attack": 25,
+    "sp_defense": 25,
+    "speed": 30,
+    "total_stats": 205,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/metapod.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/metapod.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 12,
+    "name": "Butterfree",
+    "slug": "butterfree",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "base_hp": 60,
+    "base_attack": 45,
+    "base_defense": 50,
+    "sp_attack": 90,
+    "sp_defense": 80,
+    "speed": 70,
+    "total_stats": 395,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/butterfree.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/butterfree.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 13,
+    "name": "Weedle",
+    "slug": "weedle",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_hp": 40,
+    "base_attack": 35,
+    "base_defense": 30,
+    "sp_attack": 20,
+    "sp_defense": 20,
+    "speed": 50,
+    "total_stats": 195,
+    "base_catch_rate": 0.5,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/weedle.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/weedle.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 14,
+    "name": "Kakuna",
+    "slug": "kakuna",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_hp": 45,
+    "base_attack": 25,
+    "base_defense": 50,
+    "sp_attack": 25,
+    "sp_defense": 25,
+    "speed": 35,
+    "total_stats": 205,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kakuna.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kakuna.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 15,
+    "name": "Beedrill",
+    "slug": "beedrill",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_hp": 65,
+    "base_attack": 90,
+    "base_defense": 40,
+    "sp_attack": 45,
+    "sp_defense": 80,
+    "speed": 75,
+    "total_stats": 395,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/beedrill.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/beedrill.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 16,
+    "name": "Pidgey",
+    "slug": "pidgey",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 40,
+    "base_attack": 45,
+    "base_defense": 40,
+    "sp_attack": 35,
+    "sp_defense": 35,
+    "speed": 56,
+    "total_stats": 251,
+    "base_catch_rate": 0.5,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/pidgey.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgey.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 17,
+    "name": "Pidgeotto",
+    "slug": "pidgeotto",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 63,
+    "base_attack": 60,
+    "base_defense": 55,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 71,
+    "total_stats": 349,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/pidgeotto.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgeotto.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 18,
+    "name": "Pidgeot",
+    "slug": "pidgeot",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 83,
+    "base_attack": 80,
+    "base_defense": 75,
+    "sp_attack": 70,
+    "sp_defense": 70,
+    "speed": 101,
+    "total_stats": 479,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/pidgeot.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgeot.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 19,
+    "name": "Rattata",
+    "slug": "rattata",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 30,
+    "base_attack": 56,
+    "base_defense": 35,
+    "sp_attack": 25,
+    "sp_defense": 35,
+    "speed": 72,
+    "total_stats": 253,
+    "base_catch_rate": 0.5,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/rattata.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/rattata.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 20,
+    "name": "Raticate",
+    "slug": "raticate",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 55,
+    "base_attack": 81,
+    "base_defense": 60,
+    "sp_attack": 50,
+    "sp_defense": 70,
+    "speed": 97,
+    "total_stats": 413,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/raticate.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/raticate.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 21,
+    "name": "Spearow",
+    "slug": "spearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 40,
+    "base_attack": 60,
+    "base_defense": 30,
+    "sp_attack": 31,
+    "sp_defense": 31,
+    "speed": 70,
+    "total_stats": 262,
+    "base_catch_rate": 0.5,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/spearow.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/spearow.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 22,
+    "name": "Fearow",
+    "slug": "fearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 65,
+    "base_attack": 90,
+    "base_defense": 65,
+    "sp_attack": 61,
+    "sp_defense": 61,
+    "speed": 100,
+    "total_stats": 442,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/fearow.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/fearow.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 23,
+    "name": "Ekans",
+    "slug": "ekans",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 35,
+    "base_attack": 60,
+    "base_defense": 44,
+    "sp_attack": 40,
+    "sp_defense": 54,
+    "speed": 55,
+    "total_stats": 288,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/ekans.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/ekans.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 24,
+    "name": "Arbok",
+    "slug": "arbok",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 60,
+    "base_attack": 95,
+    "base_defense": 69,
+    "sp_attack": 65,
+    "sp_defense": 79,
+    "speed": 80,
+    "total_stats": 448,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/arbok.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/arbok.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 25,
+    "name": "Pikachu",
+    "slug": "pikachu",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 35,
+    "base_attack": 55,
+    "base_defense": 40,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 90,
+    "total_stats": 320,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/pikachu.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 26,
+    "name": "Raichu",
+    "slug": "raichu",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 60,
+    "base_attack": 90,
+    "base_defense": 55,
+    "sp_attack": 90,
+    "sp_defense": 80,
+    "speed": 110,
+    "total_stats": 485,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/raichu.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/raichu.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 27,
+    "name": "Sandshrew",
+    "slug": "sandshrew",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 50,
+    "base_attack": 75,
+    "base_defense": 85,
+    "sp_attack": 20,
+    "sp_defense": 30,
+    "speed": 40,
+    "total_stats": 300,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/sandshrew.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/sandshrew.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 28,
+    "name": "Sandslash",
+    "slug": "sandslash",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 75,
+    "base_attack": 100,
+    "base_defense": 110,
+    "sp_attack": 45,
+    "sp_defense": 55,
+    "speed": 65,
+    "total_stats": 450,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/sandslash.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/sandslash.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 29,
+    "name": "Nidoran♀",
+    "slug": "nidoran-f",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 55,
+    "base_attack": 47,
+    "base_defense": 52,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 41,
+    "total_stats": 275,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidoran-f.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidoran-f.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 30,
+    "name": "Nidorina",
+    "slug": "nidorina",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 70,
+    "base_attack": 62,
+    "base_defense": 67,
+    "sp_attack": 55,
+    "sp_defense": 55,
+    "speed": 56,
+    "total_stats": 365,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidorina.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidorina.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 31,
+    "name": "Nidoqueen",
+    "slug": "nidoqueen",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "base_hp": 90,
+    "base_attack": 92,
+    "base_defense": 87,
+    "sp_attack": 75,
+    "sp_defense": 85,
+    "speed": 76,
+    "total_stats": 505,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidoqueen.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidoqueen.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 32,
+    "name": "Nidoran♂",
+    "slug": "nidoran-m",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 46,
+    "base_attack": 57,
+    "base_defense": 40,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 50,
+    "total_stats": 273,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidoran-m.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidoran-m.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 33,
+    "name": "Nidorino",
+    "slug": "nidorino",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 61,
+    "base_attack": 72,
+    "base_defense": 57,
+    "sp_attack": 55,
+    "sp_defense": 55,
+    "speed": 65,
+    "total_stats": 365,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidorino.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidorino.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 34,
+    "name": "Nidoking",
+    "slug": "nidoking",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "base_hp": 81,
+    "base_attack": 102,
+    "base_defense": 77,
+    "sp_attack": 85,
+    "sp_defense": 75,
+    "speed": 85,
+    "total_stats": 505,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/nidoking.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/nidoking.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 35,
+    "name": "Clefairy",
+    "slug": "clefairy",
+    "types": [
+      "Fairy"
+    ],
+    "base_hp": 70,
+    "base_attack": 45,
+    "base_defense": 48,
+    "sp_attack": 60,
+    "sp_defense": 65,
+    "speed": 35,
+    "total_stats": 323,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/clefairy.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/clefairy.gif",
+    "fast_moves": [
+      "Charm",
+      "Fairy Wind"
+    ],
+    "charged_moves": [
+      "Dazzling Gleam",
+      "Moonblast"
+    ]
+  },
+  {
+    "pokedex_number": 36,
+    "name": "Clefable",
+    "slug": "clefable",
+    "types": [
+      "Fairy"
+    ],
+    "base_hp": 95,
+    "base_attack": 70,
+    "base_defense": 73,
+    "sp_attack": 95,
+    "sp_defense": 90,
+    "speed": 60,
+    "total_stats": 483,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/clefable.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/clefable.gif",
+    "fast_moves": [
+      "Charm",
+      "Fairy Wind"
+    ],
+    "charged_moves": [
+      "Dazzling Gleam",
+      "Moonblast"
+    ]
+  },
+  {
+    "pokedex_number": 37,
+    "name": "Vulpix",
+    "slug": "vulpix",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 38,
+    "base_attack": 41,
+    "base_defense": 40,
+    "sp_attack": 50,
+    "sp_defense": 65,
+    "speed": 65,
+    "total_stats": 299,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/vulpix.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/vulpix.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 38,
+    "name": "Ninetales",
+    "slug": "ninetales",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 73,
+    "base_attack": 76,
+    "base_defense": 75,
+    "sp_attack": 81,
+    "sp_defense": 100,
+    "speed": 100,
+    "total_stats": 505,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/ninetales.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/ninetales.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 39,
+    "name": "Jigglypuff",
+    "slug": "jigglypuff",
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "base_hp": 115,
+    "base_attack": 45,
+    "base_defense": 20,
+    "sp_attack": 45,
+    "sp_defense": 25,
+    "speed": 20,
+    "total_stats": 270,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/jigglypuff.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/jigglypuff.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 40,
+    "name": "Wigglytuff",
+    "slug": "wigglytuff",
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "base_hp": 140,
+    "base_attack": 70,
+    "base_defense": 45,
+    "sp_attack": 85,
+    "sp_defense": 50,
+    "speed": 45,
+    "total_stats": 435,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/wigglytuff.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/wigglytuff.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 41,
+    "name": "Zubat",
+    "slug": "zubat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "base_hp": 40,
+    "base_attack": 45,
+    "base_defense": 35,
+    "sp_attack": 30,
+    "sp_defense": 40,
+    "speed": 55,
+    "total_stats": 245,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/zubat.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/zubat.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 42,
+    "name": "Golbat",
+    "slug": "golbat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "base_hp": 75,
+    "base_attack": 80,
+    "base_defense": 70,
+    "sp_attack": 65,
+    "sp_defense": 75,
+    "speed": 90,
+    "total_stats": 455,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/golbat.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/golbat.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 43,
+    "name": "Oddish",
+    "slug": "oddish",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 45,
+    "base_attack": 50,
+    "base_defense": 55,
+    "sp_attack": 75,
+    "sp_defense": 65,
+    "speed": 30,
+    "total_stats": 320,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/oddish.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/oddish.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 44,
+    "name": "Gloom",
+    "slug": "gloom",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 60,
+    "base_attack": 65,
+    "base_defense": 70,
+    "sp_attack": 85,
+    "sp_defense": 75,
+    "speed": 40,
+    "total_stats": 395,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/gloom.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/gloom.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 45,
+    "name": "Vileplume",
+    "slug": "vileplume",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 75,
+    "base_attack": 80,
+    "base_defense": 85,
+    "sp_attack": 110,
+    "sp_defense": 90,
+    "speed": 50,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/vileplume.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/vileplume.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 46,
+    "name": "Paras",
+    "slug": "paras",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "base_hp": 35,
+    "base_attack": 70,
+    "base_defense": 55,
+    "sp_attack": 45,
+    "sp_defense": 55,
+    "speed": 25,
+    "total_stats": 285,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/paras.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/paras.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 47,
+    "name": "Parasect",
+    "slug": "parasect",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "base_hp": 60,
+    "base_attack": 95,
+    "base_defense": 80,
+    "sp_attack": 60,
+    "sp_defense": 80,
+    "speed": 30,
+    "total_stats": 405,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/parasect.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/parasect.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 48,
+    "name": "Venonat",
+    "slug": "venonat",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_hp": 60,
+    "base_attack": 55,
+    "base_defense": 50,
+    "sp_attack": 40,
+    "sp_defense": 55,
+    "speed": 45,
+    "total_stats": 305,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/venonat.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/venonat.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 49,
+    "name": "Venomoth",
+    "slug": "venomoth",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_hp": 70,
+    "base_attack": 65,
+    "base_defense": 60,
+    "sp_attack": 90,
+    "sp_defense": 75,
+    "speed": 90,
+    "total_stats": 450,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/venomoth.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/venomoth.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 50,
+    "name": "Diglett",
+    "slug": "diglett",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 10,
+    "base_attack": 55,
+    "base_defense": 25,
+    "sp_attack": 35,
+    "sp_defense": 45,
+    "speed": 95,
+    "total_stats": 265,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/diglett.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/diglett.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 51,
+    "name": "Dugtrio",
+    "slug": "dugtrio",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 35,
+    "base_attack": 100,
+    "base_defense": 50,
+    "sp_attack": 50,
+    "sp_defense": 70,
+    "speed": 120,
+    "total_stats": 425,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dugtrio.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dugtrio.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 52,
+    "name": "Meowth",
+    "slug": "meowth",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 40,
+    "base_attack": 45,
+    "base_defense": 35,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 90,
+    "total_stats": 290,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/meowth.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/meowth.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 53,
+    "name": "Persian",
+    "slug": "persian",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 65,
+    "base_attack": 70,
+    "base_defense": 60,
+    "sp_attack": 65,
+    "sp_defense": 65,
+    "speed": 115,
+    "total_stats": 440,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/persian.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/persian.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 54,
+    "name": "Psyduck",
+    "slug": "psyduck",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 50,
+    "base_attack": 52,
+    "base_defense": 48,
+    "sp_attack": 65,
+    "sp_defense": 50,
+    "speed": 55,
+    "total_stats": 320,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/psyduck.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 55,
+    "name": "Golduck",
+    "slug": "golduck",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 80,
+    "base_attack": 82,
+    "base_defense": 78,
+    "sp_attack": 95,
+    "sp_defense": 80,
+    "speed": 85,
+    "total_stats": 500,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/golduck.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/golduck.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 56,
+    "name": "Mankey",
+    "slug": "mankey",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 40,
+    "base_attack": 80,
+    "base_defense": 35,
+    "sp_attack": 35,
+    "sp_defense": 45,
+    "speed": 70,
+    "total_stats": 305,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/mankey.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/mankey.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 57,
+    "name": "Primeape",
+    "slug": "primeape",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 65,
+    "base_attack": 105,
+    "base_defense": 60,
+    "sp_attack": 60,
+    "sp_defense": 70,
+    "speed": 95,
+    "total_stats": 455,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/primeape.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/primeape.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 58,
+    "name": "Growlithe",
+    "slug": "growlithe",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 55,
+    "base_attack": 70,
+    "base_defense": 45,
+    "sp_attack": 70,
+    "sp_defense": 50,
+    "speed": 60,
+    "total_stats": 350,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/growlithe.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/growlithe.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 59,
+    "name": "Arcanine",
+    "slug": "arcanine",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 90,
+    "base_attack": 110,
+    "base_defense": 80,
+    "sp_attack": 100,
+    "sp_defense": 80,
+    "speed": 95,
+    "total_stats": 555,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/arcanine.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/arcanine.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 60,
+    "name": "Poliwag",
+    "slug": "poliwag",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 40,
+    "base_attack": 50,
+    "base_defense": 40,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 90,
+    "total_stats": 300,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/poliwag.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/poliwag.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 61,
+    "name": "Poliwhirl",
+    "slug": "poliwhirl",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 65,
+    "base_attack": 65,
+    "base_defense": 65,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 90,
+    "total_stats": 385,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/poliwhirl.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/poliwhirl.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 62,
+    "name": "Poliwrath",
+    "slug": "poliwrath",
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "base_hp": 90,
+    "base_attack": 95,
+    "base_defense": 95,
+    "sp_attack": 70,
+    "sp_defense": 90,
+    "speed": 70,
+    "total_stats": 510,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/poliwrath.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/poliwrath.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 63,
+    "name": "Abra",
+    "slug": "abra",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 25,
+    "base_attack": 20,
+    "base_defense": 15,
+    "sp_attack": 105,
+    "sp_defense": 55,
+    "speed": 90,
+    "total_stats": 310,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/abra.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/abra.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 64,
+    "name": "Kadabra",
+    "slug": "kadabra",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 40,
+    "base_attack": 35,
+    "base_defense": 30,
+    "sp_attack": 120,
+    "sp_defense": 70,
+    "speed": 105,
+    "total_stats": 400,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kadabra.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kadabra.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 65,
+    "name": "Alakazam",
+    "slug": "alakazam",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 55,
+    "base_attack": 50,
+    "base_defense": 45,
+    "sp_attack": 135,
+    "sp_defense": 95,
+    "speed": 120,
+    "total_stats": 500,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/alakazam.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/alakazam.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 66,
+    "name": "Machop",
+    "slug": "machop",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 70,
+    "base_attack": 80,
+    "base_defense": 50,
+    "sp_attack": 35,
+    "sp_defense": 35,
+    "speed": 35,
+    "total_stats": 305,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/machop.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/machop.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 67,
+    "name": "Machoke",
+    "slug": "machoke",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 80,
+    "base_attack": 100,
+    "base_defense": 70,
+    "sp_attack": 50,
+    "sp_defense": 60,
+    "speed": 45,
+    "total_stats": 405,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/machoke.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/machoke.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 68,
+    "name": "Machamp",
+    "slug": "machamp",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 90,
+    "base_attack": 130,
+    "base_defense": 80,
+    "sp_attack": 65,
+    "sp_defense": 85,
+    "speed": 55,
+    "total_stats": 505,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/machamp.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/machamp.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 69,
+    "name": "Bellsprout",
+    "slug": "bellsprout",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 50,
+    "base_attack": 75,
+    "base_defense": 35,
+    "sp_attack": 70,
+    "sp_defense": 30,
+    "speed": 40,
+    "total_stats": 300,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/bellsprout.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/bellsprout.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 70,
+    "name": "Weepinbell",
+    "slug": "weepinbell",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 65,
+    "base_attack": 90,
+    "base_defense": 50,
+    "sp_attack": 85,
+    "sp_defense": 45,
+    "speed": 55,
+    "total_stats": 390,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/weepinbell.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/weepinbell.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 71,
+    "name": "Victreebel",
+    "slug": "victreebel",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_hp": 80,
+    "base_attack": 105,
+    "base_defense": 65,
+    "sp_attack": 100,
+    "sp_defense": 70,
+    "speed": 70,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/victreebel.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/victreebel.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 72,
+    "name": "Tentacool",
+    "slug": "tentacool",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "base_hp": 40,
+    "base_attack": 40,
+    "base_defense": 35,
+    "sp_attack": 50,
+    "sp_defense": 100,
+    "speed": 70,
+    "total_stats": 335,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/tentacool.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/tentacool.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 73,
+    "name": "Tentacruel",
+    "slug": "tentacruel",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "base_hp": 80,
+    "base_attack": 70,
+    "base_defense": 65,
+    "sp_attack": 80,
+    "sp_defense": 120,
+    "speed": 100,
+    "total_stats": 515,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/tentacruel.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/tentacruel.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 74,
+    "name": "Geodude",
+    "slug": "geodude",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_hp": 40,
+    "base_attack": 80,
+    "base_defense": 100,
+    "sp_attack": 30,
+    "sp_defense": 30,
+    "speed": 20,
+    "total_stats": 300,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/geodude.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/geodude.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 75,
+    "name": "Graveler",
+    "slug": "graveler",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_hp": 55,
+    "base_attack": 95,
+    "base_defense": 115,
+    "sp_attack": 45,
+    "sp_defense": 45,
+    "speed": 35,
+    "total_stats": 390,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/graveler.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/graveler.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 76,
+    "name": "Golem",
+    "slug": "golem",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_hp": 80,
+    "base_attack": 120,
+    "base_defense": 130,
+    "sp_attack": 55,
+    "sp_defense": 65,
+    "speed": 45,
+    "total_stats": 495,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/golem.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/golem.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 77,
+    "name": "Ponyta",
+    "slug": "ponyta",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 50,
+    "base_attack": 85,
+    "base_defense": 55,
+    "sp_attack": 65,
+    "sp_defense": 65,
+    "speed": 90,
+    "total_stats": 410,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/ponyta.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/ponyta.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 78,
+    "name": "Rapidash",
+    "slug": "rapidash",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 65,
+    "base_attack": 100,
+    "base_defense": 70,
+    "sp_attack": 80,
+    "sp_defense": 80,
+    "speed": 105,
+    "total_stats": 500,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/rapidash.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/rapidash.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 79,
+    "name": "Slowpoke",
+    "slug": "slowpoke",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_hp": 90,
+    "base_attack": 65,
+    "base_defense": 65,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 15,
+    "total_stats": 315,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/slowpoke.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/slowpoke.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 80,
+    "name": "Slowbro",
+    "slug": "slowbro",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_hp": 95,
+    "base_attack": 75,
+    "base_defense": 110,
+    "sp_attack": 100,
+    "sp_defense": 80,
+    "speed": 30,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/slowbro.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/slowbro.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 81,
+    "name": "Magnemite",
+    "slug": "magnemite",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "base_hp": 25,
+    "base_attack": 35,
+    "base_defense": 70,
+    "sp_attack": 95,
+    "sp_defense": 55,
+    "speed": 45,
+    "total_stats": 325,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/magnemite.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/magnemite.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 82,
+    "name": "Magneton",
+    "slug": "magneton",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "base_hp": 50,
+    "base_attack": 60,
+    "base_defense": 95,
+    "sp_attack": 120,
+    "sp_defense": 70,
+    "speed": 70,
+    "total_stats": 465,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/magneton.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/magneton.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 83,
+    "name": "Farfetch'd",
+    "slug": "farfetchd",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 52,
+    "base_attack": 90,
+    "base_defense": 55,
+    "sp_attack": 58,
+    "sp_defense": 62,
+    "speed": 60,
+    "total_stats": 377,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/farfetchd.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/farfetchd.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 84,
+    "name": "Doduo",
+    "slug": "doduo",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 35,
+    "base_attack": 85,
+    "base_defense": 45,
+    "sp_attack": 35,
+    "sp_defense": 35,
+    "speed": 75,
+    "total_stats": 310,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/doduo.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/doduo.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 85,
+    "name": "Dodrio",
+    "slug": "dodrio",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_hp": 60,
+    "base_attack": 110,
+    "base_defense": 70,
+    "sp_attack": 60,
+    "sp_defense": 60,
+    "speed": 110,
+    "total_stats": 470,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dodrio.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dodrio.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 86,
+    "name": "Seel",
+    "slug": "seel",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 65,
+    "base_attack": 45,
+    "base_defense": 55,
+    "sp_attack": 45,
+    "sp_defense": 70,
+    "speed": 45,
+    "total_stats": 325,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/seel.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/seel.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 87,
+    "name": "Dewgong",
+    "slug": "dewgong",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_hp": 90,
+    "base_attack": 70,
+    "base_defense": 80,
+    "sp_attack": 70,
+    "sp_defense": 95,
+    "speed": 70,
+    "total_stats": 475,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dewgong.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dewgong.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 88,
+    "name": "Grimer",
+    "slug": "grimer",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 80,
+    "base_attack": 80,
+    "base_defense": 50,
+    "sp_attack": 40,
+    "sp_defense": 50,
+    "speed": 25,
+    "total_stats": 325,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/grimer.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/grimer.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 89,
+    "name": "Muk",
+    "slug": "muk",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 105,
+    "base_attack": 105,
+    "base_defense": 75,
+    "sp_attack": 65,
+    "sp_defense": 100,
+    "speed": 50,
+    "total_stats": 500,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/muk.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/muk.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 90,
+    "name": "Shellder",
+    "slug": "shellder",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 30,
+    "base_attack": 65,
+    "base_defense": 100,
+    "sp_attack": 45,
+    "sp_defense": 25,
+    "speed": 40,
+    "total_stats": 305,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/shellder.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/shellder.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 91,
+    "name": "Cloyster",
+    "slug": "cloyster",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_hp": 50,
+    "base_attack": 95,
+    "base_defense": 180,
+    "sp_attack": 85,
+    "sp_defense": 45,
+    "speed": 70,
+    "total_stats": 525,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/cloyster.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/cloyster.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 92,
+    "name": "Gastly",
+    "slug": "gastly",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_hp": 30,
+    "base_attack": 35,
+    "base_defense": 30,
+    "sp_attack": 100,
+    "sp_defense": 35,
+    "speed": 80,
+    "total_stats": 310,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/gastly.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/gastly.gif",
+    "fast_moves": [
+      "Lick",
+      "Shadow Claw"
+    ],
+    "charged_moves": [
+      "Shadow Ball",
+      "Dark Pulse"
+    ]
+  },
+  {
+    "pokedex_number": 93,
+    "name": "Haunter",
+    "slug": "haunter",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_hp": 45,
+    "base_attack": 50,
+    "base_defense": 45,
+    "sp_attack": 115,
+    "sp_defense": 55,
+    "speed": 95,
+    "total_stats": 405,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/haunter.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/haunter.gif",
+    "fast_moves": [
+      "Lick",
+      "Shadow Claw"
+    ],
+    "charged_moves": [
+      "Shadow Ball",
+      "Dark Pulse"
+    ]
+  },
+  {
+    "pokedex_number": 94,
+    "name": "Gengar",
+    "slug": "gengar",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_hp": 60,
+    "base_attack": 65,
+    "base_defense": 60,
+    "sp_attack": 130,
+    "sp_defense": 75,
+    "speed": 110,
+    "total_stats": 500,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/gengar.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/gengar.gif",
+    "fast_moves": [
+      "Lick",
+      "Shadow Claw"
+    ],
+    "charged_moves": [
+      "Shadow Ball",
+      "Dark Pulse"
+    ]
+  },
+  {
+    "pokedex_number": 95,
+    "name": "Onix",
+    "slug": "onix",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_hp": 35,
+    "base_attack": 45,
+    "base_defense": 160,
+    "sp_attack": 30,
+    "sp_defense": 45,
+    "speed": 70,
+    "total_stats": 385,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/onix.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/onix.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 96,
+    "name": "Drowzee",
+    "slug": "drowzee",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 60,
+    "base_attack": 48,
+    "base_defense": 45,
+    "sp_attack": 43,
+    "sp_defense": 90,
+    "speed": 42,
+    "total_stats": 328,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/drowzee.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/drowzee.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 97,
+    "name": "Hypno",
+    "slug": "hypno",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 85,
+    "base_attack": 73,
+    "base_defense": 70,
+    "sp_attack": 73,
+    "sp_defense": 115,
+    "speed": 67,
+    "total_stats": 483,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/hypno.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/hypno.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 98,
+    "name": "Krabby",
+    "slug": "krabby",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 30,
+    "base_attack": 105,
+    "base_defense": 90,
+    "sp_attack": 25,
+    "sp_defense": 25,
+    "speed": 50,
+    "total_stats": 325,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/krabby.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/krabby.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 99,
+    "name": "Kingler",
+    "slug": "kingler",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 55,
+    "base_attack": 130,
+    "base_defense": 115,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 75,
+    "total_stats": 475,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kingler.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kingler.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 100,
+    "name": "Voltorb",
+    "slug": "voltorb",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 40,
+    "base_attack": 30,
+    "base_defense": 50,
+    "sp_attack": 55,
+    "sp_defense": 55,
+    "speed": 100,
+    "total_stats": 330,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/voltorb.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/voltorb.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 101,
+    "name": "Electrode",
+    "slug": "electrode",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 60,
+    "base_attack": 50,
+    "base_defense": 70,
+    "sp_attack": 80,
+    "sp_defense": 80,
+    "speed": 150,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/electrode.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/electrode.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 102,
+    "name": "Exeggcute",
+    "slug": "exeggcute",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "base_hp": 60,
+    "base_attack": 40,
+    "base_defense": 80,
+    "sp_attack": 60,
+    "sp_defense": 45,
+    "speed": 40,
+    "total_stats": 325,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/exeggcute.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/exeggcute.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 103,
+    "name": "Exeggutor",
+    "slug": "exeggutor",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "base_hp": 95,
+    "base_attack": 95,
+    "base_defense": 85,
+    "sp_attack": 125,
+    "sp_defense": 75,
+    "speed": 55,
+    "total_stats": 530,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/exeggutor.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/exeggutor.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 104,
+    "name": "Cubone",
+    "slug": "cubone",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 50,
+    "base_attack": 50,
+    "base_defense": 95,
+    "sp_attack": 40,
+    "sp_defense": 50,
+    "speed": 35,
+    "total_stats": 320,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/cubone.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/cubone.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 105,
+    "name": "Marowak",
+    "slug": "marowak",
+    "types": [
+      "Ground"
+    ],
+    "base_hp": 60,
+    "base_attack": 80,
+    "base_defense": 110,
+    "sp_attack": 50,
+    "sp_defense": 80,
+    "speed": 45,
+    "total_stats": 425,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/marowak.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/marowak.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 106,
+    "name": "Hitmonlee",
+    "slug": "hitmonlee",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 50,
+    "base_attack": 120,
+    "base_defense": 53,
+    "sp_attack": 35,
+    "sp_defense": 110,
+    "speed": 87,
+    "total_stats": 455,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/hitmonlee.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/hitmonlee.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 107,
+    "name": "Hitmonchan",
+    "slug": "hitmonchan",
+    "types": [
+      "Fighting"
+    ],
+    "base_hp": 50,
+    "base_attack": 105,
+    "base_defense": 79,
+    "sp_attack": 35,
+    "sp_defense": 110,
+    "speed": 76,
+    "total_stats": 455,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/hitmonchan.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/hitmonchan.gif",
+    "fast_moves": [
+      "Counter",
+      "Karate Chop"
+    ],
+    "charged_moves": [
+      "Dynamic Punch",
+      "Close Combat"
+    ]
+  },
+  {
+    "pokedex_number": 108,
+    "name": "Lickitung",
+    "slug": "lickitung",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 90,
+    "base_attack": 55,
+    "base_defense": 75,
+    "sp_attack": 60,
+    "sp_defense": 75,
+    "speed": 30,
+    "total_stats": 385,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/lickitung.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/lickitung.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 109,
+    "name": "Koffing",
+    "slug": "koffing",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 40,
+    "base_attack": 65,
+    "base_defense": 95,
+    "sp_attack": 60,
+    "sp_defense": 45,
+    "speed": 35,
+    "total_stats": 340,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/koffing.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/koffing.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 110,
+    "name": "Weezing",
+    "slug": "weezing",
+    "types": [
+      "Poison"
+    ],
+    "base_hp": 65,
+    "base_attack": 90,
+    "base_defense": 120,
+    "sp_attack": 85,
+    "sp_defense": 70,
+    "speed": 60,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/weezing.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/weezing.gif",
+    "fast_moves": [
+      "Poison Jab",
+      "Acid"
+    ],
+    "charged_moves": [
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
+  },
+  {
+    "pokedex_number": 111,
+    "name": "Rhyhorn",
+    "slug": "rhyhorn",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "base_hp": 80,
+    "base_attack": 85,
+    "base_defense": 95,
+    "sp_attack": 30,
+    "sp_defense": 30,
+    "speed": 25,
+    "total_stats": 345,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/rhyhorn.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/rhyhorn.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 112,
+    "name": "Rhydon",
+    "slug": "rhydon",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "base_hp": 105,
+    "base_attack": 130,
+    "base_defense": 120,
+    "sp_attack": 45,
+    "sp_defense": 45,
+    "speed": 40,
+    "total_stats": 485,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/rhydon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/rhydon.gif",
+    "fast_moves": [
+      "Mud-Slap",
+      "Mud Shot"
+    ],
+    "charged_moves": [
+      "Earthquake",
+      "Earth Power"
+    ]
+  },
+  {
+    "pokedex_number": 113,
+    "name": "Chansey",
+    "slug": "chansey",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 250,
+    "base_attack": 5,
+    "base_defense": 5,
+    "sp_attack": 35,
+    "sp_defense": 105,
+    "speed": 50,
+    "total_stats": 450,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/chansey.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/chansey.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 114,
+    "name": "Tangela",
+    "slug": "tangela",
+    "types": [
+      "Grass"
+    ],
+    "base_hp": 65,
+    "base_attack": 55,
+    "base_defense": 115,
+    "sp_attack": 100,
+    "sp_defense": 40,
+    "speed": 60,
+    "total_stats": 435,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/tangela.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/tangela.gif",
+    "fast_moves": [
+      "Vine Whip",
+      "Razor Leaf"
+    ],
+    "charged_moves": [
+      "Solar Beam",
+      "Grass Knot",
+      "Energy Ball"
+    ]
+  },
+  {
+    "pokedex_number": 115,
+    "name": "Kangaskhan",
+    "slug": "kangaskhan",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 105,
+    "base_attack": 95,
+    "base_defense": 80,
+    "sp_attack": 40,
+    "sp_defense": 80,
+    "speed": 90,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kangaskhan.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kangaskhan.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 116,
+    "name": "Horsea",
+    "slug": "horsea",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 30,
+    "base_attack": 40,
+    "base_defense": 70,
+    "sp_attack": 70,
+    "sp_defense": 25,
+    "speed": 60,
+    "total_stats": 295,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/horsea.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/horsea.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 117,
+    "name": "Seadra",
+    "slug": "seadra",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 55,
+    "base_attack": 65,
+    "base_defense": 95,
+    "sp_attack": 95,
+    "sp_defense": 45,
+    "speed": 85,
+    "total_stats": 440,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/seadra.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/seadra.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 118,
+    "name": "Goldeen",
+    "slug": "goldeen",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 45,
+    "base_attack": 67,
+    "base_defense": 60,
+    "sp_attack": 35,
+    "sp_defense": 50,
+    "speed": 63,
+    "total_stats": 320,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/goldeen.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/goldeen.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 119,
+    "name": "Seaking",
+    "slug": "seaking",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 80,
+    "base_attack": 92,
+    "base_defense": 65,
+    "sp_attack": 65,
+    "sp_defense": 80,
+    "speed": 68,
+    "total_stats": 450,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/seaking.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/seaking.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 120,
+    "name": "Staryu",
+    "slug": "staryu",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 30,
+    "base_attack": 45,
+    "base_defense": 55,
+    "sp_attack": 70,
+    "sp_defense": 55,
+    "speed": 85,
+    "total_stats": 340,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/staryu.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/staryu.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 121,
+    "name": "Starmie",
+    "slug": "starmie",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_hp": 60,
+    "base_attack": 75,
+    "base_defense": 85,
+    "sp_attack": 100,
+    "sp_defense": 85,
+    "speed": 115,
+    "total_stats": 520,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/starmie.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/starmie.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 122,
+    "name": "Mr. Mime",
+    "slug": "mr-mime",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "base_hp": 40,
+    "base_attack": 45,
+    "base_defense": 65,
+    "sp_attack": 100,
+    "sp_defense": 120,
+    "speed": 90,
+    "total_stats": 460,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/mr-mime.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/mr-mime.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 123,
+    "name": "Scyther",
+    "slug": "scyther",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "base_hp": 70,
+    "base_attack": 110,
+    "base_defense": 80,
+    "sp_attack": 55,
+    "sp_defense": 80,
+    "speed": 105,
+    "total_stats": 500,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/scyther.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/scyther.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 124,
+    "name": "Jynx",
+    "slug": "jynx",
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "base_hp": 65,
+    "base_attack": 50,
+    "base_defense": 35,
+    "sp_attack": 115,
+    "sp_defense": 95,
+    "speed": 95,
+    "total_stats": 455,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/jynx.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/jynx.gif",
+    "fast_moves": [
+      "Ice Shard",
+      "Frost Breath"
+    ],
+    "charged_moves": [
+      "Ice Beam",
+      "Blizzard"
+    ]
+  },
+  {
+    "pokedex_number": 125,
+    "name": "Electabuzz",
+    "slug": "electabuzz",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 65,
+    "base_attack": 83,
+    "base_defense": 57,
+    "sp_attack": 95,
+    "sp_defense": 85,
+    "speed": 105,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/electabuzz.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/electabuzz.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 126,
+    "name": "Magmar",
+    "slug": "magmar",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 65,
+    "base_attack": 95,
+    "base_defense": 57,
+    "sp_attack": 100,
+    "sp_defense": 85,
+    "speed": 93,
+    "total_stats": 495,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/magmar.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/magmar.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 127,
+    "name": "Pinsir",
+    "slug": "pinsir",
+    "types": [
+      "Bug"
+    ],
+    "base_hp": 65,
+    "base_attack": 125,
+    "base_defense": 100,
+    "sp_attack": 55,
+    "sp_defense": 70,
+    "speed": 85,
+    "total_stats": 500,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/pinsir.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/pinsir.gif",
+    "fast_moves": [
+      "Bug Bite",
+      "Infestation"
+    ],
+    "charged_moves": [
+      "Bug Buzz",
+      "X-Scissor"
+    ]
+  },
+  {
+    "pokedex_number": 128,
+    "name": "Tauros",
+    "slug": "tauros",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 75,
+    "base_attack": 100,
+    "base_defense": 95,
+    "sp_attack": 40,
+    "sp_defense": 70,
+    "speed": 110,
+    "total_stats": 490,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/tauros.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/tauros.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 129,
+    "name": "Magikarp",
+    "slug": "magikarp",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 20,
+    "base_attack": 10,
+    "base_defense": 55,
+    "sp_attack": 15,
+    "sp_defense": 20,
+    "speed": 80,
+    "total_stats": 200,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/magikarp.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/magikarp.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 130,
+    "name": "Gyarados",
+    "slug": "gyarados",
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "base_hp": 95,
+    "base_attack": 125,
+    "base_defense": 79,
+    "sp_attack": 60,
+    "sp_defense": 100,
+    "speed": 81,
+    "total_stats": 540,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/gyarados.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/gyarados.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 131,
+    "name": "Lapras",
+    "slug": "lapras",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_hp": 130,
+    "base_attack": 85,
+    "base_defense": 80,
+    "sp_attack": 85,
+    "sp_defense": 95,
+    "speed": 60,
+    "total_stats": 535,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/lapras.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/lapras.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 132,
+    "name": "Ditto",
+    "slug": "ditto",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 48,
+    "base_attack": 48,
+    "base_defense": 48,
+    "sp_attack": 48,
+    "sp_defense": 48,
+    "speed": 48,
+    "total_stats": 288,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/ditto.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/ditto.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 133,
+    "name": "Eevee",
+    "slug": "eevee",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 55,
+    "base_attack": 55,
+    "base_defense": 50,
+    "sp_attack": 45,
+    "sp_defense": 65,
+    "speed": 55,
+    "total_stats": 325,
+    "base_catch_rate": 0.2,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/eevee.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/eevee.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 134,
+    "name": "Vaporeon",
+    "slug": "vaporeon",
+    "types": [
+      "Water"
+    ],
+    "base_hp": 130,
+    "base_attack": 65,
+    "base_defense": 60,
+    "sp_attack": 110,
+    "sp_defense": 95,
+    "speed": 65,
+    "total_stats": 525,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/vaporeon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/vaporeon.gif",
+    "fast_moves": [
+      "Water Gun",
+      "Waterfall"
+    ],
+    "charged_moves": [
+      "Hydro Pump",
+      "Surf",
+      "Aqua Tail"
+    ]
+  },
+  {
+    "pokedex_number": 135,
+    "name": "Jolteon",
+    "slug": "jolteon",
+    "types": [
+      "Electric"
+    ],
+    "base_hp": 65,
+    "base_attack": 65,
+    "base_defense": 60,
+    "sp_attack": 110,
+    "sp_defense": 95,
+    "speed": 130,
+    "total_stats": 525,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/jolteon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/jolteon.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 136,
+    "name": "Flareon",
+    "slug": "flareon",
+    "types": [
+      "Fire"
+    ],
+    "base_hp": 65,
+    "base_attack": 130,
+    "base_defense": 60,
+    "sp_attack": 95,
+    "sp_defense": 110,
+    "speed": 65,
+    "total_stats": 525,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/flareon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/flareon.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 137,
+    "name": "Porygon",
+    "slug": "porygon",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 65,
+    "base_attack": 60,
+    "base_defense": 70,
+    "sp_attack": 85,
+    "sp_defense": 75,
+    "speed": 40,
+    "total_stats": 395,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/porygon.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/porygon.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 138,
+    "name": "Omanyte",
+    "slug": "omanyte",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_hp": 35,
+    "base_attack": 40,
+    "base_defense": 100,
+    "sp_attack": 90,
+    "sp_defense": 55,
+    "speed": 35,
+    "total_stats": 355,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/omanyte.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/omanyte.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 139,
+    "name": "Omastar",
+    "slug": "omastar",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_hp": 70,
+    "base_attack": 60,
+    "base_defense": 125,
+    "sp_attack": 115,
+    "sp_defense": 70,
+    "speed": 55,
+    "total_stats": 495,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/omastar.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/omastar.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 140,
+    "name": "Kabuto",
+    "slug": "kabuto",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_hp": 30,
+    "base_attack": 80,
+    "base_defense": 90,
+    "sp_attack": 55,
+    "sp_defense": 45,
+    "speed": 55,
+    "total_stats": 355,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kabuto.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kabuto.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 141,
+    "name": "Kabutops",
+    "slug": "kabutops",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_hp": 60,
+    "base_attack": 115,
+    "base_defense": 105,
+    "sp_attack": 65,
+    "sp_defense": 70,
+    "speed": 80,
+    "total_stats": 495,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/kabutops.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/kabutops.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 142,
+    "name": "Aerodactyl",
+    "slug": "aerodactyl",
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "base_hp": 80,
+    "base_attack": 105,
+    "base_defense": 65,
+    "sp_attack": 60,
+    "sp_defense": 75,
+    "speed": 130,
+    "total_stats": 515,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/aerodactyl.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/aerodactyl.gif",
+    "fast_moves": [
+      "Rock Throw",
+      "Smack Down"
+    ],
+    "charged_moves": [
+      "Rock Slide",
+      "Stone Edge"
+    ]
+  },
+  {
+    "pokedex_number": 143,
+    "name": "Snorlax",
+    "slug": "snorlax",
+    "types": [
+      "Normal"
+    ],
+    "base_hp": 160,
+    "base_attack": 110,
+    "base_defense": 65,
+    "sp_attack": 65,
+    "sp_defense": 110,
+    "speed": 30,
+    "total_stats": 540,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/snorlax.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/snorlax.gif",
+    "fast_moves": [
+      "Tackle",
+      "Quick Attack",
+      "Scratch"
+    ],
+    "charged_moves": [
+      "Hyper Beam",
+      "Body Slam",
+      "Return"
+    ]
+  },
+  {
+    "pokedex_number": 144,
+    "name": "Articuno",
+    "slug": "articuno",
+    "types": [
+      "Ice",
+      "Flying"
+    ],
+    "base_hp": 90,
+    "base_attack": 85,
+    "base_defense": 100,
+    "sp_attack": 95,
+    "sp_defense": 125,
+    "speed": 85,
+    "total_stats": 580,
+    "base_catch_rate": 0.03,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/articuno.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/articuno.gif",
+    "fast_moves": [
+      "Ice Shard",
+      "Frost Breath"
+    ],
+    "charged_moves": [
+      "Ice Beam",
+      "Blizzard"
+    ]
+  },
+  {
+    "pokedex_number": 145,
+    "name": "Zapdos",
+    "slug": "zapdos",
+    "types": [
+      "Electric",
+      "Flying"
+    ],
+    "base_hp": 90,
+    "base_attack": 90,
+    "base_defense": 85,
+    "sp_attack": 125,
+    "sp_defense": 90,
+    "speed": 100,
+    "total_stats": 580,
+    "base_catch_rate": 0.03,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/zapdos.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/zapdos.gif",
+    "fast_moves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "charged_moves": [
+      "Thunderbolt",
+      "Thunder",
+      "Wild Charge"
+    ]
+  },
+  {
+    "pokedex_number": 146,
+    "name": "Moltres",
+    "slug": "moltres",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "base_hp": 90,
+    "base_attack": 100,
+    "base_defense": 90,
+    "sp_attack": 125,
+    "sp_defense": 85,
+    "speed": 90,
+    "total_stats": 580,
+    "base_catch_rate": 0.03,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/moltres.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/moltres.gif",
+    "fast_moves": [
+      "Ember",
+      "Fire Spin"
+    ],
+    "charged_moves": [
+      "Flamethrower",
+      "Fire Blast",
+      "Overheat"
+    ]
+  },
+  {
+    "pokedex_number": 147,
+    "name": "Dratini",
+    "slug": "dratini",
+    "types": [
+      "Dragon"
+    ],
+    "base_hp": 41,
+    "base_attack": 64,
+    "base_defense": 45,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 50,
+    "total_stats": 300,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dratini.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dratini.gif",
+    "fast_moves": [
+      "Dragon Breath",
+      "Dragon Tail"
+    ],
+    "charged_moves": [
+      "Outrage",
+      "Dragon Claw"
+    ]
+  },
+  {
+    "pokedex_number": 148,
+    "name": "Dragonair",
+    "slug": "dragonair",
+    "types": [
+      "Dragon"
+    ],
+    "base_hp": 61,
+    "base_attack": 84,
+    "base_defense": 65,
+    "sp_attack": 70,
+    "sp_defense": 70,
+    "speed": 70,
+    "total_stats": 420,
+    "base_catch_rate": 0.4,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dragonair.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dragonair.gif",
+    "fast_moves": [
+      "Dragon Breath",
+      "Dragon Tail"
+    ],
+    "charged_moves": [
+      "Outrage",
+      "Dragon Claw"
+    ]
+  },
+  {
+    "pokedex_number": 149,
+    "name": "Dragonite",
+    "slug": "dragonite",
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "base_hp": 91,
+    "base_attack": 134,
+    "base_defense": 95,
+    "sp_attack": 100,
+    "sp_defense": 100,
+    "speed": 80,
+    "total_stats": 600,
+    "base_catch_rate": 0.08,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/dragonite.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/dragonite.gif",
+    "fast_moves": [
+      "Dragon Breath",
+      "Dragon Tail"
+    ],
+    "charged_moves": [
+      "Outrage",
+      "Dragon Claw"
+    ]
+  },
+  {
+    "pokedex_number": 150,
+    "name": "Mewtwo",
+    "slug": "mewtwo",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 106,
+    "base_attack": 110,
+    "base_defense": 90,
+    "sp_attack": 154,
+    "sp_defense": 90,
+    "speed": 130,
+    "total_stats": 680,
+    "base_catch_rate": 0.02,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/mewtwo.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/mewtwo.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  },
+  {
+    "pokedex_number": 151,
+    "name": "Mew",
+    "slug": "mew",
+    "types": [
+      "Psychic"
+    ],
+    "base_hp": 100,
+    "base_attack": 100,
+    "base_defense": 100,
+    "sp_attack": 100,
+    "sp_defense": 100,
+    "speed": 100,
+    "total_stats": 600,
+    "base_catch_rate": 0.02,
+    "front_sprite_url": "https://img.pokemondb.net/sprites/home/normal/mew.png",
+    "animated_sprite_url": "https://img.pokemondb.net/sprites/black-white/anim/normal/mew.gif",
+    "fast_moves": [
+      "Confusion",
+      "Psycho Cut"
+    ],
+    "charged_moves": [
+      "Psychic",
+      "Psyshock"
+    ]
+  }
+]
