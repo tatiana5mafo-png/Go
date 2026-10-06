@@ -4,6 +4,7 @@ import {
   ActivityIndicator, Animated, Easing, FlatList, Image, PanResponder, Pressable,
   StyleSheet, Text, View,
 } from 'react-native';
+import Svg, { Defs, Ellipse, LinearGradient, Polygon, Rect, Stop } from 'react-native-svg';
 import { useBattle } from '../hooks/useBattle';
 import { battleApi } from '../services/battleApi';
 import { MyPokemon, fetchMyPokemon } from '../services/pokedexApi';
@@ -21,59 +22,60 @@ interface Props {
 interface Opponent { dex_number: number; name: string; sprite_url: string | null }
 interface Pop { id: number; value: string; color: string; side: 'me' | 'opp' }
 interface Msg { id: number; text: string; color: string }
+interface ShotFx { id: number; from: 'me' | 'opp'; color: string }
+type Intro = 'idle' | 'vs' | 'fight' | 'done';
 
-const ATTACK_COOLDOWN_MS = 1000; // el servidor es quien lo hace cumplir; aquí solo evitamos spam
+const ATTACK_COOLDOWN_MS = 1000; // el servidor lo hace cumplir; aquí solo se ve
 const DODGE_COOLDOWN_MS = 3000;
 const SWIPE_PX = 50;
-const WAIT_LIMIT_MS = 2 * 60 * 1000; // NUEVO: tiempo de espera de rival (para probar rápido, pon 15_000)
-
-const PROJ_MS = 450;          // lo que tarda el ataque en cruzar la arena
-const DODGE_WINDOW_MS = 900;  // tiempo que tu Pokémon queda "esquivando"
-
-const ME_RANGE: [number, number] = [-30, 110];
-const OPP_RANGE: [number, number] = [-100, 40];
-const offsetOf = (d: number, r: [number, number]) => (d < 0 ? -d * r[0] : d * r[1]);
-
-interface Shot { id: number; from: 'me' | 'opp'; miss: boolean; color: string; fromX: number; toX: number }
+const ME_SIZE = 200;
+const OPP_SIZE = 150;
 
 const JOIN_ERRORS: Record<string, string> = {
   gym_not_found: 'Ese gimnasio no existe.',
   too_far: 'Estás demasiado lejos del gimnasio.',
   not_yours: 'Ese Pokémon no es tuyo.',
   already_in_battle: 'Ya estás en un combate.',
+  outside: 'Solo se juega dentro del campus.',
   error: 'Error de conexión con el servidor.',
 };
 
-// NUEVO: "1:42"
-const clockText = (ms: number) => {
-  const total = Math.ceil(ms / 1000);
-  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
-};
+const shakeSeq = (v: Animated.Value, amp = 1) =>
+  Animated.sequence(
+    [1, -1, 0.7, -0.7, 0.4, 0].map((t) =>
+      Animated.timing(v, { toValue: t * amp, duration: 50, useNativeDriver: true }),
+    ),
+  );
 
-/** Barra de vida que baja con animación. */
+/* ───────────── Barra de vida con estela ───────────── */
 const HpBar = memo(function HpBar({ hp, max }: { hp: number; max: number }) {
   const ratio = Math.max(0, Math.min(1, hp / Math.max(1, max)));
-  const v = useRef(new Animated.Value(ratio)).current;
+  const main = useRef(new Animated.Value(ratio)).current;
+  const ghost = useRef(new Animated.Value(ratio)).current;
   useEffect(() => {
-    Animated.timing(v, { toValue: ratio, duration: 450, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
-  }, [v, ratio]);
+    Animated.timing(main, { toValue: ratio, duration: 250, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
+    Animated.timing(ghost, { toValue: ratio, duration: 600, delay: 450, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
+  }, [main, ghost, ratio]);
+  const pct = (v: Animated.Value) => v.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
   return (
     <View style={s.hpTrack}>
+      <Animated.View style={[s.hpGhost, { width: pct(ghost) }]} />
       <Animated.View
         style={[s.hpFill, {
-          width: v.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }),
-          backgroundColor: v.interpolate({ inputRange: [0, 0.25, 0.5, 1], outputRange: ['#ef4444', '#ef4444', '#facc15', '#22c55e'] }),
+          width: pct(main),
+          backgroundColor: main.interpolate({ inputRange: [0, 0.25, 0.5, 1], outputRange: ['#ef4444', '#ef4444', '#facc15', '#22c55e'] }),
         }]}
       />
+      <View style={s.hpShine} />
     </View>
   );
 });
 
-/** Número de daño que sube y se desvanece. */
+/* ───────────── Efectos ───────────── */
 const DamagePop = memo(function DamagePop({ pop }: { pop: Pop }) {
   const v = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    Animated.timing(v, { toValue: 1, duration: 900, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
+    Animated.timing(v, { toValue: 1, duration: 950, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
   }, [v]);
   return (
     <Animated.Text
@@ -81,8 +83,8 @@ const DamagePop = memo(function DamagePop({ pop }: { pop: Pop }) {
       style={[s.pop, { color: pop.color }, pop.side === 'opp' ? s.popOpp : s.popMe, {
         opacity: v.interpolate({ inputRange: [0, 0.15, 0.7, 1], outputRange: [0, 1, 1, 0] }),
         transform: [
-          { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [0, -70] }) },
-          { scale: v.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0.5, 1.3, 1] }) },
+          { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [0, -80] }) },
+          { scale: v.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0.5, 1.4, 1] }) },
         ],
       }]}
     >
@@ -91,49 +93,12 @@ const DamagePop = memo(function DamagePop({ pop }: { pop: Pop }) {
   );
 });
 
-/** Bola de energía que cruza la arena. Si falla, pasa de largo. */
-const Projectile = memo(function Projectile({ shot, w, h }: { shot: Shot; w: number; h: number }) {
-  const v = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    Animated.timing(v, { toValue: 1, duration: PROJ_MS, easing: Easing.in(Easing.quad), useNativeDriver: true }).start();
-  }, [v]);
-
-  // centros aproximados de cada sprite (mismas posiciones que oppSpot / meSpot)
-  const opp = { x: w - 30 - 75, y: 6 + 75 };
-  const me = { x: 14 + 95, y: h - 22 - 95 };
-  const a = { ...(shot.from === 'opp' ? opp : me) };
-  const b = { ...(shot.from === 'opp' ? me : opp) };
-  a.x += shot.fromX;
-  b.x += shot.toX;
-  const k = shot.miss ? 1.45 : 1; // si falla, sigue de largo
-  const ex = a.x + (b.x - a.x) * k;
-  const ey = a.y + (b.y - a.y) * k;
-
-  return (
-    <Animated.View
-      pointerEvents="none"
-      style={[s.shot, {
-        backgroundColor: shot.color, shadowColor: shot.color,
-        opacity: v.interpolate({ inputRange: [0, 0.1, 0.8, 1], outputRange: [0, 1, 1, shot.miss ? 0 : 1] }),
-        transform: [
-          { translateX: v.interpolate({ inputRange: [0, 1], outputRange: [a.x - 18, ex - 18] }) },
-          { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [a.y - 18, ey - 18] }) },
-          { scale: v.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.5, 1.2, 1] }) },
-        ],
-      }]}
-    >
-      <View style={s.shotCore} />
-    </Animated.View>
-  );
-});
-
-/** Aviso de tipo que rebota. */
 const Banner = memo(function Banner({ msg }: { msg: Msg }) {
   const v = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.sequence([
       Animated.spring(v, { toValue: 1, friction: 4, useNativeDriver: true }),
-      Animated.delay(900),
+      Animated.delay(800),
       Animated.timing(v, { toValue: 0, duration: 250, useNativeDriver: true }),
     ]).start();
   }, [v]);
@@ -147,12 +112,61 @@ const Banner = memo(function Banner({ msg }: { msg: Msg }) {
   );
 });
 
-/** Sprite que flota; recibe un valor externo para temblar al ser golpeado. */
+/** Esfera que viaja de un Pokémon al otro y estalla en una onda al llegar. */
+const Shot = memo(function Shot({
+  from, to, color, onDone,
+}: { from: { x: number; y: number }; to: { x: number; y: number }; color: string; onDone: () => void }) {
+  const p = useRef(new Animated.Value(0)).current;
+  const ring = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.timing(p, { toValue: 1, duration: 240, easing: Easing.in(Easing.quad), useNativeDriver: true }),
+      Animated.timing(ring, { toValue: 1, duration: 330, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+    ]);
+    a.start(() => onDone());
+    return () => a.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const orb = (k: number, size: number, op: number) => (
+    <Animated.View
+      pointerEvents="none"
+      style={{
+        position: 'absolute', left: from.x - size / 2, top: from.y - size / 2, width: size, height: size,
+        borderRadius: size / 2, backgroundColor: color, shadowColor: color, shadowOpacity: 1, shadowRadius: 12,
+        opacity: p.interpolate({ inputRange: [0, 0.97, 1], outputRange: [op, op, 0] }),
+        transform: [
+          { translateX: p.interpolate({ inputRange: [0, 1], outputRange: [0, dx * k] }) },
+          { translateY: p.interpolate({ inputRange: [0, 1], outputRange: [0, dy * k] }) },
+        ],
+      }}
+    />
+  );
+  return (
+    <>
+      {orb(0.7, 12, 0.35)}
+      {orb(0.85, 16, 0.6)}
+      {orb(1, 24, 1)}
+      <Animated.View
+        pointerEvents="none"
+        style={{
+          position: 'absolute', left: to.x - 60, top: to.y - 60, width: 120, height: 120, borderRadius: 60,
+          borderWidth: 6, borderColor: color,
+          opacity: ring.interpolate({ inputRange: [0, 0.05, 1], outputRange: [0, 1, 0] }),
+          transform: [{ scale: ring.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1.5] }) }],
+        }}
+      />
+    </>
+  );
+});
+
+/** Sprite con sombra, flotación, temblor, destello y desplazamiento lateral (esquiva). */
 const Fighter = memo(function Fighter({
-  uri, size, shake, flash, dodge, range, delay,
+  uri, size, shake, flash, slide, delay,
 }: {
   uri: string | null; size: number; shake: Animated.Value; flash: Animated.Value;
-  dodge: Animated.Value; range: [number, number]; delay: number;
+  slide: Animated.Value; delay: number;
 }) {
   const bob = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -166,17 +180,93 @@ const Fighter = memo(function Fighter({
   }, [bob, delay]);
   return (
     <Animated.View style={{
-      opacity: dodge.interpolate({ inputRange: [-1, 0, 1], outputRange: [0.55, 1, 0.55] }),
+      width: size, height: size,
       transform: [
-        { translateY: bob.interpolate({ inputRange: [0, 1], outputRange: [0, -8] }) },
-        { translateX: shake.interpolate({ inputRange: [-1, 1], outputRange: [-16, 16] }) },
-        { translateX: dodge.interpolate({ inputRange: [-1, 0, 1], outputRange: [range[0], 0, range[1]] }) },
-        { rotate: dodge.interpolate({ inputRange: [-1, 1], outputRange: ['-14deg', '14deg'] }) },
+        { translateY: bob.interpolate({ inputRange: [0, 1], outputRange: [0, -9] }) },
+        { translateX: Animated.add(shake.interpolate({ inputRange: [-1, 1], outputRange: [-16, 16] }), slide) },
       ],
     }}>
-      {uri ? <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="contain" /> : <View style={{ width: size, height: size }} />}
+      {uri ? <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="contain" /> : null}
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, s.hitFlash, { opacity: flash }]} />
     </Animated.View>
+  );
+});
+
+/** Confeti de victoria. */
+const Confetti = memo(function Confetti() {
+  const colors = ['#facc15', '#38bdf8', '#f87171', '#4ade80', '#ffffff'];
+  const pieces = useRef(
+    Array.from({ length: 28 }, (_, i) => ({
+      v: new Animated.Value(0),
+      x: ((i * 53 + 7) % 100) / 100,
+      color: colors[i % colors.length],
+      dur: 1800 + ((i * 197) % 1400),
+      delay: (i * 60) % 600,
+      spin: 360 + (i % 5) * 180,
+    })),
+  ).current;
+  useEffect(() => {
+    const anims = pieces.map((p) => Animated.sequence([
+      Animated.delay(p.delay),
+      Animated.timing(p.v, { toValue: 1, duration: p.dur, easing: Easing.in(Easing.quad), useNativeDriver: true }),
+    ]));
+    anims.forEach((a) => a.start());
+    return () => anims.forEach((a) => a.stop());
+  }, [pieces]);
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {pieces.map((p, i) => (
+        <Animated.View
+          key={i}
+          style={{
+            position: 'absolute', left: `${p.x * 100}%`, top: -20, width: 9, height: 15, borderRadius: 2,
+            backgroundColor: p.color,
+            opacity: p.v.interpolate({ inputRange: [0, 0.05, 0.85, 1], outputRange: [0, 1, 1, 0] }),
+            transform: [
+              { translateY: p.v.interpolate({ inputRange: [0, 1], outputRange: [0, 900] }) },
+              { rotate: p.v.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${p.spin}deg`] }) },
+            ],
+          }}
+        />
+      ))}
+    </View>
+  );
+});
+
+const WaitingPulse = memo(function WaitingPulse() {
+  const v = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const l = Animated.loop(Animated.timing(v, { toValue: 1, duration: 1800, easing: Easing.out(Easing.quad), useNativeDriver: true }));
+    l.start();
+    return () => l.stop();
+  }, [v]);
+  return (
+    <Animated.View pointerEvents="none" style={[s.pulse, {
+      opacity: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 0] }),
+      transform: [{ scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1.6] }) }],
+    }]} />
+  );
+});
+
+/** Botón de acción con barra de recarga. */
+const ActionBtn = memo(function ActionBtn({
+  icon, label, color, big, cooldown, disabled, onPress,
+}: {
+  icon: keyof typeof Ionicons.glyphMap; label: string; color: string; big?: boolean;
+  cooldown: Animated.Value; disabled: boolean; onPress: () => void;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      style={({ pressed }) => [s.actBtn, big && s.actBig, { backgroundColor: color }, disabled && { opacity: 0.55 }, pressed && { transform: [{ scale: 0.94 }] }]}
+    >
+      <Ionicons name={icon} size={big ? 34 : 26} color="white" />
+      <Text style={[s.actLabel, big && { fontSize: 15 }]}>{label}</Text>
+      <View style={s.cdTrack}>
+        <Animated.View style={[s.cdFill, { width: cooldown.interpolate({ inputRange: [0, 1], outputRange: ['100%', '0%'] }) }]} />
+      </View>
+    </Pressable>
   );
 });
 
@@ -187,19 +277,17 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
   const [joining, setJoining] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [opp, setOpp] = useState<Opponent | null>(null);
-
-  // NUEVO: espera de rival
-  const [timedOut, setTimedOut] = useState(false);
-  const [now, setNow] = useState(() => Date.now());
-  const cancelling = useRef(false);
-  const nextTry = useRef(0);
+  const [intro, setIntro] = useState<Intro>('idle');
+  const [arena, setArena] = useState({ w: 0, h: 0 });
 
   const { view, fx, act, userId } = useBattle(battleId);
 
   const [pops, setPops] = useState<Pop[]>([]);
   const [msg, setMsg] = useState<Msg | null>(null);
-  const [dodgeReady, setDodgeReady] = useState(true);
+  const [shots, setShots] = useState<ShotFx[]>([]);
+  const [combo, setCombo] = useState(0);
   const lastAttack = useRef(0);
+  const dodgeReadyAt = useRef(0);
   const counter = useRef(0);
   const mounted = useRef(true);
 
@@ -207,53 +295,20 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
   const oppShake = useRef(new Animated.Value(0)).current;
   const myFlash = useRef(new Animated.Value(0)).current;
   const oppFlash = useRef(new Animated.Value(0)).current;
-
-  const [shots, setShots] = useState<Shot[]>([]);
-  const [arena, setArena] = useState({ w: 0, h: 0 });
-  const myDodge = useRef(new Animated.Value(0)).current;
-  const oppDodge = useRef(new Animated.Value(0)).current;
-  const dodgeUntil = useRef(0);
-  const oppShotAt = useRef(0);
-
-  const myDodgeX = useRef(0);
-  const oppDodgeX = useRef(0);
-  useEffect(() => {
-    const a = myDodge.addListener(({ value }) => { myDodgeX.current = value; });
-    const b = oppDodge.addListener(({ value }) => { oppDodgeX.current = value; });
-    return () => { myDodge.removeListener(a); oppDodge.removeListener(b); };
-  }, [myDodge, oppDodge]);
+  const mySlide = useRef(new Animated.Value(0)).current;
+  const screenShake = useRef(new Animated.Value(0)).current;
+  const atkCd = useRef(new Animated.Value(1)).current;
+  const dodgeCd = useRef(new Animated.Value(1)).current;
+  const introLeft = useRef(new Animated.Value(0)).current;
+  const introRight = useRef(new Animated.Value(0)).current;
+  const introVs = useRef(new Animated.Value(0)).current;
+  const introFight = useRef(new Animated.Value(0)).current;
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
 
   useEffect(() => {
     fetchMyPokemon().then((r) => mounted.current && setMine(r)).catch(() => mounted.current && setMine([]));
   }, []);
-
-  // NUEVO: milisegundos que quedan de espera, calculados con la hora de creación del combate
-  const created = view?.createdAt;
-  const remainingMs =
-    created && Number.isFinite(created) ? Math.max(0, created + WAIT_LIMIT_MS - now) : WAIT_LIMIT_MS;
-
-  // NUEVO: reloj que avanza solo mientras se espera al rival
-  useEffect(() => {
-    if (view?.status !== 'waiting') return;
-    const id = setInterval(() => setNow(Date.now()), 500);
-    return () => clearInterval(id);
-  }, [view?.status]);
-
-  // NUEVO: al llegar a 0:00 se pide al servidor cerrar el combate en espera.
-  // Si responde false es que alguien entró justo ahora (o falló la red): se reintenta en 3 s.
-  useEffect(() => {
-    if (!battleId || view?.status !== 'waiting' || remainingMs > 0) return;
-    if (cancelling.current || Date.now() < nextTry.current) return;
-    cancelling.current = true;
-    battleApi.cancelWaiting(battleId).then((ok) => {
-      cancelling.current = false;
-      if (!mounted.current) return;
-      if (ok) setTimedOut(true);
-      else nextTry.current = Date.now() + 3000;
-    });
-  }, [battleId, view?.status, remainingMs, now]);
 
   // Rival: la función del servidor solo responde a los participantes
   useEffect(() => {
@@ -264,18 +319,53 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
     });
   }, [battleId, view?.status, opp]);
 
-  const hit = useCallback((who: 'me' | 'opp') => {
+  // Presentación del duelo: VS y ¡PELEA!
+  useEffect(() => {
+    if (view?.status !== 'active' || intro !== 'idle') return;
+    setIntro('vs');
+    const seq = Animated.sequence([
+      Animated.parallel([
+        Animated.timing(introLeft, { toValue: 1, duration: 450, easing: Easing.out(Easing.back(1.4)), useNativeDriver: true }),
+        Animated.timing(introRight, { toValue: 1, duration: 450, easing: Easing.out(Easing.back(1.4)), useNativeDriver: true }),
+      ]),
+      Animated.spring(introVs, { toValue: 1, friction: 4, useNativeDriver: true }),
+      Animated.delay(700),
+    ]);
+    seq.start(() => {
+      if (!mounted.current) return;
+      setIntro('fight');
+      Animated.sequence([
+        Animated.spring(introFight, { toValue: 1, friction: 4, useNativeDriver: true }),
+        Animated.delay(450),
+      ]).start(() => mounted.current && setIntro('done'));
+    });
+    return () => seq.stop();
+  }, [view?.status, intro, introLeft, introRight, introVs, introFight]);
+
+  // Si entras a un combate ya terminado, no hay presentación
+  useEffect(() => {
+    if (view?.status === 'finished' && intro !== 'done') setIntro('done');
+  }, [view?.status, intro]);
+
+  const spot = useCallback(
+    (who: 'me' | 'opp') => (who === 'me'
+      ? { x: arena.w * 0.27, y: arena.h * 0.68 }
+      : { x: arena.w * 0.73, y: arena.h * 0.27 }),
+    [arena],
+  );
+
+  const hit = useCallback((who: 'me' | 'opp', big: boolean) => {
     const shake = who === 'me' ? myShake : oppShake;
     const flash = who === 'me' ? myFlash : oppFlash;
     Animated.parallel([
-      Animated.sequence([1, -1, 0.7, -0.7, 0.4, 0].map((t) => Animated.timing(shake, { toValue: t, duration: 55, useNativeDriver: true }))
-        .reduce<Animated.CompositeAnimation[]>((a, x) => [...a, x], []) as any),
+      shakeSeq(shake),
       Animated.sequence([
-        Animated.timing(flash, { toValue: 0.7, duration: 60, useNativeDriver: true }),
+        Animated.timing(flash, { toValue: 0.75, duration: 60, useNativeDriver: true }),
         Animated.timing(flash, { toValue: 0, duration: 260, useNativeDriver: true }),
       ]),
+      shakeSeq(screenShake, big ? 0.6 : 0.25),
     ]).start();
-  }, [myShake, oppShake, myFlash, oppFlash]);
+  }, [myShake, oppShake, myFlash, oppFlash, screenShake]);
 
   const addPop = useCallback((side: 'me' | 'opp', value: string, color: string) => {
     const id = ++counter.current;
@@ -285,92 +375,69 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
 
   const say = useCallback((text: string, color: string) => setMsg({ id: ++counter.current, text, color }), []);
 
-  const launch = useCallback((from: 'me' | 'opp', miss: boolean, color: string) => {
+  const fire = useCallback((from: 'me' | 'opp', color: string) => {
     const id = ++counter.current;
-    const myOff = offsetOf(myDodgeX.current, ME_RANGE);
-    const oppOff = offsetOf(oppDodgeX.current, OPP_RANGE);
-    const shot: Shot = from === 'me'
-      ? { id, from, miss, color, fromX: myOff, toX: oppOff }
-      : { id, from, miss, color, fromX: oppOff, toX: myOff };
-    setShots((p) => [...p.slice(-3), shot]);
-    setTimeout(() => mounted.current && setShots((p) => p.filter((x) => x.id !== id)), PROJ_MS + 150);
+    setShots((a) => [...a.slice(-3), { id, from, color }]);
   }, []);
-
-  const playDodge = useCallback((val: Animated.Value, dir: 1 | -1) => {
-    Animated.sequence([
-      Animated.timing(val, { toValue: dir, duration: 140, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      Animated.delay(DODGE_WINDOW_MS - 360),
-      Animated.timing(val, { toValue: 0, duration: 220, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-    ]).start();
-  }, []);
+  const endShot = useCallback((id: number) => setShots((a) => a.filter((x) => x.id !== id)), []);
 
   const typeText = (mult: number) =>
-    mult === 0 ? { t: 'No afecta', c: '#6b7280' }
-      : mult > 1 ? { t: '¡SÚPER EFECTIVO!', c: '#f59e0b' }
-        : mult < 1 ? { t: 'Poco efectivo', c: '#64748b' }
-          : null;
+    mult === 0 ? { t: 'No afecta', c: '#9ca3af' }
+    : mult > 1 ? { t: '¡SÚPER EFECTIVO!', c: '#f59e0b' }
+    : mult < 1 ? { t: 'Poco efectivo', c: '#94a3b8' }
+    : null;
 
   // Lo que hace el rival (solo animación; la vida llega por Postgres Changes)
   useEffect(() => {
     if (!fx || fx.from === userId) return;
-
-    if (fx.kind === 'attack_start') {
-      oppShotAt.current = Date.now();
-      launch('opp', false, '#fb923c');   // la bola sale ya
-      return;
-    }
-
     if (fx.kind === 'attack') {
-      const dmg = fx.damage ?? 0;
-      const miss = dmg <= 0;
-      const wait = Math.max(0, PROJ_MS - (Date.now() - oppShotAt.current));
+      fire('opp', '#f87171');
       setTimeout(() => {
         if (!mounted.current) return;
-        if (miss) {
-          addPop('me', 'Esquivado', '#38bdf8');
-          say('¡Lo esquivaste!', '#38bdf8');
-        } else {
-          hit('me');
-          addPop('me', `-${dmg}`, '#f87171');
-        }
-      }, wait);
-      return;
+        hit('me', Number(fx.multiplier) > 1);
+        addPop('me', `-${fx.damage ?? 0}`, '#f87171');
+        setCombo(0);
+      }, 240);
+    } else {
+      say('El rival esquiva', '#38bdf8');
     }
-
-    // kind === 'dodge'
-    playDodge(oppDodge, fx.dir ?? -1);
-    say('El rival esquiva', '#38bdf8');
-  }, [fx, userId, hit, addPop, say, launch, playDodge, oppDodge]);
+  }, [fx, userId, hit, addPop, say, fire]);
 
   const attack = useCallback(async () => {
-    const t = Date.now();
-    if (t - lastAttack.current < ATTACK_COOLDOWN_MS) return;
-    lastAttack.current = t;
-
-    launch('me', false, '#fde047');      // tu bola sale al instante
+    const now = Date.now();
+    if (intro !== 'done' || now - lastAttack.current < ATTACK_COOLDOWN_MS) return;
+    lastAttack.current = now;
+    atkCd.setValue(0);
+    Animated.timing(atkCd, { toValue: 1, duration: ATTACK_COOLDOWN_MS, easing: Easing.linear, useNativeDriver: false }).start();
     const res = await act('attack');
-    if (!res.ok || res.action !== 'attack') return;
-
-    const fullMiss = res.dodged && res.damage <= 0;
-    const wait = Math.max(0, PROJ_MS - (Date.now() - t));
+    if (!mounted.current || !res.ok || res.action !== 'attack') return;
+    fire('me', '#fde047');
     setTimeout(() => {
       if (!mounted.current) return;
-      if (!fullMiss) hit('opp');
+      const mult = Number(res.multiplier);
+      hit('opp', mult > 1);
       addPop('opp', res.damage > 0 ? `-${res.damage}` : '0', res.dodged ? '#38bdf8' : '#fde047');
-      const tt = typeText(Number(res.multiplier));
-      if (res.dodged) say(fullMiss ? '¡Te esquivó!' : '¡Esquivado a medias!', '#38bdf8');
+      setCombo((c) => c + 1);
+      const tt = typeText(mult);
+      if (res.dodged) say('¡Esquivado a medias!', '#38bdf8');
       else if (tt) say(tt.t, tt.c);
-    }, wait);
-  }, [act, hit, addPop, say, launch, typeText]);
+    }, 240);
+  }, [act, hit, addPop, say, fire, intro, atkCd]);
 
-  const dodge = useCallback(async (dir: 1 | -1 = 1) => {
-    if (!dodgeReady) { say('Esquiva recargando...', '#94a3b8'); return; }
-    setDodgeReady(false);
-    setTimeout(() => mounted.current && setDodgeReady(true), DODGE_COOLDOWN_MS);
-    dodgeUntil.current = Date.now() + DODGE_WINDOW_MS;
-    playDodge(myDodge, dir);
-    await act('dodge', dir);
-  }, [act, dodgeReady, say, playDodge, myDodge]);
+  const dodge = useCallback(async (dir: 1 | -1) => {
+    const now = Date.now();
+    if (intro !== 'done' || now < dodgeReadyAt.current) return;
+    dodgeReadyAt.current = now + DODGE_COOLDOWN_MS;
+    dodgeCd.setValue(0);
+    Animated.timing(dodgeCd, { toValue: 1, duration: DODGE_COOLDOWN_MS, easing: Easing.linear, useNativeDriver: false }).start();
+    Animated.sequence([
+      Animated.timing(mySlide, { toValue: 70 * dir, duration: 140, useNativeDriver: true }),
+      Animated.delay(500),
+      Animated.timing(mySlide, { toValue: 0, duration: 220, useNativeDriver: true }),
+    ]).start();
+    const res = await act('dodge');
+    if (res.ok) say('¡Esquiva!', '#38bdf8');
+  }, [act, say, intro, dodgeCd, mySlide]);
 
   // El PanResponder se crea una vez y usa siempre la última versión de los manejadores
   const handlers = useRef({ attack, dodge });
@@ -393,26 +460,13 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
     else setError(JOIN_ERRORS[res.reason] ?? 'Error');
   }, [gymId, position]);
 
-  // NUEVO: Reintentar vuelve a buscar rival con el mismo Pokémon
-  const retry = useCallback(() => {
-    setTimedOut(false);
-    setOpp(null);
-    setBattleId(null);
-    nextTry.current = 0;
-    if (chosen) choose(chosen);
-  }, [chosen, choose]);
-
-  // NUEVO: Salir mientras se espera cierra también el combate, para no dejarlo abierto
-  const leaveWaiting = useCallback(async () => {
-    if (battleId) {
-      try { await battleApi.cancelWaiting(battleId); } catch { /* si falla, igual salimos */ }
-    }
-    onClose();
-  }, [battleId, onClose]);
-
   const myPoke = useMemo(
     () => mine?.find((m) => m.id === view?.myPokemonId) ?? chosen,
     [mine, view?.myPokemonId, chosen],
+  );
+  const sortedMine = useMemo(
+    () => (mine ? [...mine].sort((a, b) => computeCp(b, b) - computeCp(a, a)) : []),
+    [mine],
   );
 
   /* ─────────── 1. Elegir Pokémon ─────────── */
@@ -423,7 +477,7 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
           <Pressable onPress={onClose} style={s.backBtn} hitSlop={10}><Ionicons name="close" size={22} color="white" /></Pressable>
           <Text style={s.kicker}>GIMNASIO</Text>
           <Text style={s.pickTitle} numberOfLines={1}>{gymName}</Text>
-          <Text style={s.pickSub}>Elige tu Pokémon</Text>
+          <Text style={s.pickSub}>Elige a tu luchador</Text>
         </View>
         {error && <Text style={s.error}>{error}</Text>}
         {mine === null ? (
@@ -432,7 +486,7 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
           <Text style={s.empty}>Aún no tienes Pokémon. Captura uno primero.</Text>
         ) : (
           <FlatList
-            data={[...mine].sort((a, b) => computeCp(b, b) - computeCp(a, a))}
+            data={sortedMine}
             keyExtractor={(p) => p.id}
             contentContainerStyle={{ padding: 16, gap: 10 }}
             renderItem={({ item }) => (
@@ -442,8 +496,7 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={s.pickName}>{item.name}</Text>
-                  {/* CAMBIO: "PS" ahora dice "Salud" */}
-                  <Text style={s.pickMeta}>IV {ivPerfection(item)}% · Salud {(item.baseHp + item.ivHp) * 3}</Text>
+                  <Text style={s.pickMeta}>IV {ivPerfection(item)}% · PS {(item.baseHp + item.ivHp) * 3}</Text>
                 </View>
                 <Text style={s.pickCp}>CP {computeCp(item, item)}</Text>
               </Pressable>
@@ -455,12 +508,6 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
     );
   }
 
-  /* ─────────── NUEVO: sin rival (tiempo de espera agotado) ─────────── */
-  // Se muestra al cancelar por el contador o cuando el servidor cerró el combate sin que llegara nadie.
-  if (timedOut || (view?.status === 'finished' && !view.hadOpponent)) {
-    return <NoOpponent sprite={myPoke?.spriteUrl ?? null} onBack={onClose} onRetry={retry} />;
-  }
-
   /* ─────────── 2. Esperando rival ─────────── */
   if (!view || view.status === 'waiting') {
     return (
@@ -469,213 +516,128 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
         {myPoke?.spriteUrl ? <Image source={{ uri: myPoke.spriteUrl }} style={s.waitSprite} resizeMode="contain" /> : null}
         <Text style={s.waitTitle}>Esperando un rival</Text>
         <Text style={s.waitSub}>Otro entrenador debe entrar a {gymName}.</Text>
-        {/* NUEVO: contador regresivo */}
-        <View style={[s.waitClock, remainingMs <= 15000 && s.waitClockUrgent]}>
-          <Ionicons name="time-outline" size={20} color="white" />
-          <Text style={s.waitClockText}>{clockText(remainingMs)}</Text>
-        </View>
-        <Text style={s.waitHint}>Si nadie llega, la búsqueda termina sola.</Text>
-        <Pressable style={s.ghostBtn} onPress={leaveWaiting}><Text style={s.ghostText}>Salir</Text></Pressable>
+        <Pressable style={s.ghostBtn} onPress={onClose}><Text style={s.ghostText}>Salir</Text></Pressable>
       </View>
     );
   }
 
   /* ─────────── 3. Combate ─────────── */
   const finished = view.status === 'finished';
+  const me = spot('me');
+  const op = spot('opp');
+  const canAct = intro === 'done' && !finished;
+
   return (
     <View style={s.root}>
-      <View style={s.beamA} /><View style={s.beamB} />
-
       {/* Rival (arriba) */}
       <View style={s.oppPanel}>
         <View style={s.panelRow}>
           <Text style={s.panelName} numberOfLines={1}>{opp?.name ?? 'Rival'}</Text>
-          <Text style={s.panelHp}>{view.oppHp}/{view.oppMax}</Text>
+          <View style={s.hpBadge}><Text style={s.panelHp}>{view.oppHp}/{view.oppMax}</Text></View>
         </View>
         <HpBar hp={view.oppHp} max={view.oppMax} />
       </View>
 
       {/* Arena: tocar ataca, deslizar esquiva */}
-      <View style={s.arena} {...pan.panHandlers}
-        onLayout={(e) => setArena({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height })}>
-        <View style={s.floorOuter}><View style={s.floorInner} /></View>
-        <View style={s.oppSpot}>
-          <Fighter uri={opp?.sprite_url ?? null} size={150} shake={oppShake} flash={oppFlash} dodge={oppDodge} range={[-100, 40]} delay={0} />
-        </View>
-        <View style={s.meSpot}>
-          <Fighter uri={myPoke?.spriteUrl ?? null} size={190} shake={myShake} flash={myFlash} dodge={myDodge} range={[-30, 110]} delay={400} />
-        </View>
-        {arena.w > 0 && shots.map((sh) => <Projectile key={sh.id} shot={sh} w={arena.w} h={arena.h} />)}
+      <Animated.View
+        style={[s.arena, { transform: [{ translateX: screenShake.interpolate({ inputRange: [-1, 1], outputRange: [-10, 10] }) }] }]}
+        onLayout={(e) => setArena({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height })}
+        {...pan.panHandlers}
+      >
+        {arena.w > 0 && (
+          <Svg width={arena.w} height={arena.h} style={StyleSheet.absoluteFill}>
+            <Defs>
+              <LinearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <Stop offset="0" stopColor="#050d22" />
+                <Stop offset="1" stopColor="#0d3270" />
+              </LinearGradient>
+            </Defs>
+            <Rect x="0" y="0" width={arena.w} height={arena.h} fill="url(#sky)" />
+            <Polygon points={`${arena.w * 0.1},0 ${arena.w * 0.3},0 ${arena.w * 0.55},${arena.h} ${arena.w * 0.15},${arena.h}`} fill="rgba(56,189,248,0.08)" />
+            <Polygon points={`${arena.w * 0.7},0 ${arena.w * 0.92},0 ${arena.w * 0.9},${arena.h} ${arena.w * 0.5},${arena.h}`} fill="rgba(250,204,21,0.06)" />
+            <Ellipse cx={arena.w / 2} cy={arena.h * 0.52} rx={arena.w * 0.62} ry={arena.h * 0.34} fill="none" stroke="rgba(125,211,252,0.18)" strokeWidth="3" />
+            <Ellipse cx={arena.w / 2} cy={arena.h * 0.52} rx={arena.w * 0.44} ry={arena.h * 0.22} fill="none" stroke="rgba(125,211,252,0.12)" strokeWidth="2" />
+            <Ellipse cx={op.x} cy={op.y + OPP_SIZE * 0.42} rx={OPP_SIZE * 0.6} ry={OPP_SIZE * 0.17} fill="rgba(56,189,248,0.22)" stroke="rgba(125,211,252,0.6)" strokeWidth="2" />
+            <Ellipse cx={me.x} cy={me.y + ME_SIZE * 0.42} rx={ME_SIZE * 0.6} ry={ME_SIZE * 0.17} fill="rgba(250,204,21,0.2)" stroke="rgba(253,224,71,0.6)" strokeWidth="2" />
+          </Svg>
+        )}
+
+        {arena.w > 0 && (
+          <>
+            <View style={[s.spot, { left: op.x - OPP_SIZE / 2, top: op.y - OPP_SIZE / 2 }]} pointerEvents="none">
+              <Fighter uri={opp?.sprite_url ?? null} size={OPP_SIZE} shake={oppShake} flash={oppFlash} slide={new Animated.Value(0)} delay={0} />
+            </View>
+            <View style={[s.spot, { left: me.x - ME_SIZE / 2, top: me.y - ME_SIZE / 2 }]} pointerEvents="none">
+              <Fighter uri={myPoke?.spriteUrl ?? null} size={ME_SIZE} shake={myShake} flash={myFlash} slide={mySlide} delay={400} />
+            </View>
+            {shots.map((sh) => (
+              <Shot key={sh.id} from={sh.from === 'me' ? me : op} to={sh.from === 'me' ? op : me} color={sh.color} onDone={() => endShot(sh.id)} />
+            ))}
+          </>
+        )}
+
         {pops.map((p) => <DamagePop key={p.id} pop={p} />)}
         {msg && <Banner key={msg.id} msg={msg} />}
-      </View>
+        {combo >= 2 && (
+          <View style={s.combo} pointerEvents="none"><Text style={s.comboText}>COMBO x{combo}</Text></View>
+        )}
+      </Animated.View>
 
-      {/* Mi Pokémon (abajo) */}
+      {/* Mi Pokémon y acciones */}
       <View style={s.mePanel}>
         <View style={s.panelRow}>
           <Text style={s.panelName} numberOfLines={1}>{myPoke?.name ?? 'Tú'}</Text>
-          <Text style={s.panelHp}>{view.myHp}/{view.myMax}</Text>
+          <View style={s.hpBadge}><Text style={s.panelHp}>{view.myHp}/{view.myMax}</Text></View>
         </View>
         <HpBar hp={view.myHp} max={view.myMax} />
-        <View style={s.hintRow}>
-          <View style={s.hint}><Ionicons name="flash" size={16} color="#facc15" /><Text style={s.hintText}>Toca: atacar</Text></View>
-          <View style={[s.hint, !dodgeReady && { opacity: 0.4 }]}><Ionicons name="swap-horizontal" size={16} color="#38bdf8" /><Text style={s.hintText}>Desliza: esquivar</Text></View>
-        </View>
       </View>
 
-      {/* Resultado: ahora con tres casos */}
+      <View style={s.actions}>
+        <ActionBtn icon="arrow-back" label="Esquivar" color="#0369a1" cooldown={dodgeCd} disabled={!canAct} onPress={() => dodge(-1)} />
+        <ActionBtn icon="flash" label="ATACAR" color="#dc2626" big cooldown={atkCd} disabled={!canAct} onPress={attack} />
+        <ActionBtn icon="arrow-forward" label="Esquivar" color="#0369a1" cooldown={dodgeCd} disabled={!canAct} onPress={() => dodge(1)} />
+      </View>
+
+      {/* Presentación VS */}
+      {(intro === 'vs' || intro === 'fight') && (
+        <View style={s.introOverlay} pointerEvents="none">
+          <Animated.View style={[s.introCard, s.introMe, {
+            transform: [{ translateX: introLeft.interpolate({ inputRange: [0, 1], outputRange: [-320, 0] }) }],
+          }]}>
+            {myPoke?.spriteUrl ? <Image source={{ uri: myPoke.spriteUrl }} style={s.introSprite} resizeMode="contain" /> : null}
+            <Text style={s.introName} numberOfLines={1}>{myPoke?.name ?? 'Tú'}</Text>
+          </Animated.View>
+
+          <Animated.Text style={[s.vs, { opacity: introVs, transform: [{ scale: introVs.interpolate({ inputRange: [0, 1], outputRange: [3, 1] }) }] }]}>VS</Animated.Text>
+
+          <Animated.View style={[s.introCard, s.introOpp, {
+            transform: [{ translateX: introRight.interpolate({ inputRange: [0, 1], outputRange: [320, 0] }) }],
+          }]}>
+            {opp?.sprite_url ? <Image source={{ uri: opp.sprite_url }} style={s.introSprite} resizeMode="contain" /> : null}
+            <Text style={s.introName} numberOfLines={1}>{opp?.name ?? 'Rival'}</Text>
+          </Animated.View>
+
+          {intro === 'fight' && (
+            <Animated.Text style={[s.fightText, { opacity: introFight, transform: [{ scale: introFight.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1] }) }] }]}>
+              ¡PELEA!
+            </Animated.Text>
+          )}
+        </View>
+      )}
+
+      {/* Resultado */}
       {finished && (
         <View style={s.resultOverlay}>
-          {view.won ? (
-            <>
-              <Ionicons name="trophy" size={84} color="#facc15" />
-              <Text style={[s.resultTitle, { color: '#facc15' }]}>¡Victoria!</Text>
-              <Text style={s.resultSub}>Dejaste sin salud a tu rival.</Text>
-            </>
-          ) : view.winnerId === null ? (
-            <>
-              {/* NUEVO: combate cerrado por inactividad, sin ganador */}
-              <Ionicons name="time-outline" size={84} color="#fdba74" />
-              <Text style={[s.resultTitle, { color: '#fdba74', fontSize: 36 }]}>Combate cancelado</Text>
-              <Text style={s.resultSub}>Se cerró por inactividad. No hay ganador.</Text>
-            </>
-          ) : (
-            <>
-              <Ionicons name="sad" size={84} color="#94a3b8" />
-              <Text style={[s.resultTitle, { color: '#e5e7eb' }]}>Derrota</Text>
-              <Text style={s.resultSub}>Tu Pokémon se quedó sin salud.</Text>
-            </>
-          )}
+          {view.won && <Confetti />}
+          <Ionicons name={view.won ? 'trophy' : 'sad'} size={96} color={view.won ? '#facc15' : '#94a3b8'} />
+          <Text style={[s.resultTitle, { color: view.won ? '#facc15' : '#e5e7eb' }]}>{view.won ? '¡Victoria!' : 'Derrota'}</Text>
+          <Text style={s.resultSub}>{view.won ? 'Dejaste sin PS a tu rival.' : 'Tu Pokémon se quedó sin PS.'}</Text>
           <Pressable style={s.btn} onPress={onClose}><Text style={s.btnText}>Volver al mapa</Text></Pressable>
         </View>
       )}
     </View>
   );
 }
-
-/** Círculos que se expanden mientras se espera al rival. */
-const WaitingPulse = memo(function WaitingPulse() {
-  const v = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    const l = Animated.loop(Animated.timing(v, { toValue: 1, duration: 1800, easing: Easing.out(Easing.quad), useNativeDriver: true }));
-    l.start();
-    return () => l.stop();
-  }, [v]);
-  return (
-    <Animated.View pointerEvents="none" style={[s.pulse, {
-      opacity: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 0] }),
-      transform: [{ scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1.6] }) }],
-    }]} />
-  );
-});
-
-/** NUEVO: pantalla de "búsqueda agotada", con entrada animada y plataforma holográfica. */
-const NoOpponent = memo(function NoOpponent({
-  sprite, onBack, onRetry,
-}: { sprite: string | null; onBack: () => void; onRetry: () => void }) {
-  const tTitle = useRef(new Animated.Value(0)).current;
-  const tCard = useRef(new Animated.Value(0)).current;
-  const tStage = useRef(new Animated.Value(0)).current;
-  const tBtns = useRef(new Animated.Value(0)).current;
-  const flicker = useRef(new Animated.Value(1)).current;
-  const wave = useRef(new Animated.Value(0)).current;
-  const bob = useRef(new Animated.Value(0)).current;
-  const glow = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const spring = (v: Animated.Value, delay: number) =>
-      Animated.sequence([
-        Animated.delay(delay),
-        Animated.spring(v, { toValue: 1, friction: 6, tension: 80, useNativeDriver: true }),
-      ]);
-
-    const intro = Animated.parallel([
-      spring(tTitle, 0),
-      spring(tCard, 250),
-      spring(tStage, 450),
-      spring(tBtns, 800),
-      // el 0:00 parpadea como pantalla digital al encenderse
-      Animated.sequence([
-        Animated.delay(500),
-        Animated.timing(flicker, { toValue: 0.2, duration: 70, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 1, duration: 70, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 0.4, duration: 70, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 1, duration: 90, useNativeDriver: true }),
-      ]),
-    ]);
-
-    const loops = [
-      Animated.loop(Animated.timing(wave, { toValue: 1, duration: 2000, easing: Easing.out(Easing.quad), useNativeDriver: true })),
-      Animated.loop(Animated.sequence([
-        Animated.timing(bob, { toValue: 1, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        Animated.timing(bob, { toValue: 0, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-      ])),
-      Animated.loop(Animated.sequence([
-        Animated.timing(glow, { toValue: 1, duration: 900, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-        Animated.timing(glow, { toValue: 0, duration: 900, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-      ])),
-    ];
-
-    intro.start();
-    loops.forEach((l) => l.start());
-    return () => { intro.stop(); loops.forEach((l) => l.stop()); };
-  }, [tTitle, tCard, tStage, tBtns, flicker, wave, bob, glow]);
-
-  const titleY = tTitle.interpolate({ inputRange: [0, 1], outputRange: [-30, 0] });
-  const cardY = tCard.interpolate({ inputRange: [0, 1], outputRange: [30, 0] });
-  const cardGlow = glow.interpolate({ inputRange: [0, 1], outputRange: [1, 1.04] });
-  const stageScale = tStage.interpolate({ inputRange: [0, 1], outputRange: [0.8, 1] });
-  const bobY = bob.interpolate({ inputRange: [0, 1], outputRange: [0, -8] });
-  const waveScale = wave.interpolate({ inputRange: [0, 1], outputRange: [1, 1.5] });
-  const waveOpacity = wave.interpolate({ inputRange: [0, 1], outputRange: [0.5, 0] });
-  const btnsScale = tBtns.interpolate({ inputRange: [0, 1], outputRange: [0.8, 1] });
-
-  return (
-    <View style={s.noRoot}>
-      <View style={s.noGlowA} />
-      <View style={s.noGlowB} />
-
-      <Animated.View style={{ alignItems: 'center', opacity: tTitle, transform: [{ translateY: titleY }] }}>
-        <Text style={s.noTitle}>
-          BÚSQUEDA <Text style={s.noTitleAccent}>AGOTADA</Text>
-        </Text>
-        <Text style={s.noSub}>No se encontraron oponentes. ¡Inténtalo de nuevo más tarde!</Text>
-      </Animated.View>
-
-      {/* Tarjeta holográfica con el reloj */}
-      <Animated.View style={[s.noCard, { opacity: tCard, transform: [{ translateY: cardY }, { scale: cardGlow }] }]}>
-        <Ionicons name="timer-outline" size={38} color="#fdba74" />
-        <View style={{ alignItems: 'center' }}>
-          <Animated.Text allowFontScaling={false} style={[s.noClock, { opacity: flicker }]}>0:00</Animated.Text>
-          <Text style={s.noExpired}>TIEMPO AGOTADO</Text>
-        </View>
-      </Animated.View>
-
-      {/* Plataforma con tu Pokémon esperando */}
-      <Animated.View style={[s.noStage, { opacity: tStage, transform: [{ scale: stageScale }] }]}>
-        <View style={s.platOuter} />
-        <View style={s.platInner} />
-        <Animated.View style={[s.platWave, { opacity: waveOpacity, transform: [{ scale: waveScale }] }]} />
-        <Animated.View style={{ marginBottom: 46, transform: [{ translateY: bobY }] }}>
-          {sprite ? (
-            <Image source={{ uri: sprite }} style={s.noSprite} resizeMode="contain" />
-          ) : (
-            <View style={s.noSprite} />
-          )}
-        </Animated.View>
-      </Animated.View>
-
-      <Animated.View style={[s.noButtons, { opacity: tBtns, transform: [{ scale: btnsScale }] }]}>
-        <Pressable style={[s.noBtn, s.noBtnGhost]} onPress={onBack}>
-          <Text style={s.noBtnGhostText}>VOLVER</Text>
-        </Pressable>
-        <Pressable style={[s.noBtn, s.noBtnSolid]} onPress={onRetry}>
-          <Text style={s.noBtnSolidText}>REINTENTAR</Text>
-        </Pressable>
-      </Animated.View>
-    </View>
-  );
-});
 
 const s = StyleSheet.create({
   root: { flex: 1, backgroundColor: '#060f24' },
@@ -700,71 +662,51 @@ const s = StyleSheet.create({
   waitSprite: { width: 180, height: 180 },
   waitTitle: { color: 'white', fontSize: 26, fontWeight: '900', marginTop: 10 },
   waitSub: { color: '#94a3b8', marginTop: 6, textAlign: 'center' },
-  waitClock: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 20, backgroundColor: 'rgba(255,255,255,0.14)', paddingHorizontal: 18, height: 44, borderRadius: 22 },
-  waitClockUrgent: { backgroundColor: 'rgba(220,38,38,0.85)' },
-  waitClockText: { color: 'white', fontSize: 22, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  waitHint: { color: '#64748b', marginTop: 10, fontSize: 12 },
-  ghostBtn: { marginTop: 24, backgroundColor: 'rgba(255,255,255,0.12)', paddingHorizontal: 30, paddingVertical: 12, borderRadius: 14 },
+  ghostBtn: { marginTop: 28, backgroundColor: 'rgba(255,255,255,0.12)', paddingHorizontal: 30, paddingVertical: 12, borderRadius: 14 },
   ghostText: { color: 'white', fontWeight: '800' },
 
-  beamA: { position: 'absolute', top: -40, left: 30, width: 90, height: 420, backgroundColor: 'rgba(56,189,248,0.10)', transform: [{ rotate: '-18deg' }] },
-  beamB: { position: 'absolute', top: -40, right: 40, width: 90, height: 420, backgroundColor: 'rgba(250,204,21,0.07)', transform: [{ rotate: '16deg' }] },
-
-  oppPanel: { marginTop: 58, marginHorizontal: 16, padding: 12, borderRadius: 18, backgroundColor: 'rgba(11,42,91,0.85)', borderWidth: 1, borderColor: 'rgba(248,113,113,0.5)' },
-  mePanel: { marginHorizontal: 16, marginBottom: 28, padding: 12, borderRadius: 18, backgroundColor: 'rgba(11,42,91,0.85)', borderWidth: 1, borderColor: 'rgba(56,189,248,0.5)' },
+  oppPanel: { marginTop: 56, marginHorizontal: 14, padding: 12, borderRadius: 18, backgroundColor: 'rgba(11,42,91,0.92)', borderWidth: 2, borderColor: 'rgba(248,113,113,0.6)', zIndex: 3 },
+  mePanel: { marginHorizontal: 14, marginTop: 8, padding: 12, borderRadius: 18, backgroundColor: 'rgba(11,42,91,0.92)', borderWidth: 2, borderColor: 'rgba(56,189,248,0.6)' },
   panelRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
-  panelName: { color: 'white', fontSize: 18, fontWeight: '900', flex: 1 },
+  panelName: { color: 'white', fontSize: 18, fontWeight: '900', flex: 1, textTransform: 'capitalize' },
+  hpBadge: { backgroundColor: 'rgba(0,0,0,0.35)', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 10 },
   panelHp: { color: '#e2e8f0', fontWeight: '800', fontVariant: ['tabular-nums'] },
-  hpTrack: { height: 12, borderRadius: 6, backgroundColor: 'rgba(255,255,255,0.15)', overflow: 'hidden' },
-  hpFill: { height: '100%', borderRadius: 6 },
-  hintRow: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 10 },
-  hint: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  hintText: { color: '#cbd5e1', fontWeight: '700', fontSize: 12 },
+  hpTrack: { height: 14, borderRadius: 7, backgroundColor: 'rgba(255,255,255,0.15)', overflow: 'hidden' },
+  hpGhost: { position: 'absolute', left: 0, top: 0, bottom: 0, backgroundColor: 'rgba(255,255,255,0.85)' },
+  hpFill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: 7 },
+  hpShine: { position: 'absolute', left: 0, right: 0, top: 0, height: 4, backgroundColor: 'rgba(255,255,255,0.28)' },
 
-  arena: { flex: 1 },
-  floorOuter: { position: 'absolute', bottom: 30, alignSelf: 'center', width: 340, height: 120, borderRadius: 170, backgroundColor: 'rgba(56,189,248,0.12)', alignItems: 'center', justifyContent: 'center' },
-  floorInner: { width: 250, height: 80, borderRadius: 125, borderWidth: 3, borderColor: 'rgba(125,211,252,0.5)' },
-  oppSpot: { position: 'absolute', top: 6, right: 30 },
-  meSpot: { position: 'absolute', bottom: 22, left: 14 },
+  arena: { flex: 1, marginTop: 8, marginHorizontal: 0, overflow: 'hidden' },
+  spot: { position: 'absolute' },
   hitFlash: { backgroundColor: 'white', borderRadius: 80 },
 
-  pop: { position: 'absolute', fontSize: 38, fontWeight: '900', textShadowColor: 'black', textShadowRadius: 8 },
-  popOpp: { top: 40, right: 70 },
-  popMe: { bottom: 130, left: 70 },
-  banner: { position: 'absolute', top: '42%', alignSelf: 'center', paddingHorizontal: 22, paddingVertical: 10, borderRadius: 16, borderBottomWidth: 4, borderBottomColor: 'rgba(0,0,0,0.3)' },
+  pop: { position: 'absolute', fontSize: 42, fontWeight: '900', textShadowColor: 'black', textShadowRadius: 8 },
+  popOpp: { top: '14%', right: '14%' },
+  popMe: { bottom: '34%', left: '12%' },
+  banner: { position: 'absolute', top: '44%', alignSelf: 'center', paddingHorizontal: 22, paddingVertical: 10, borderRadius: 16, borderBottomWidth: 4, borderBottomColor: 'rgba(0,0,0,0.3)' },
   bannerText: { color: '#1f1300', fontWeight: '900', fontSize: 20 },
+  combo: { position: 'absolute', top: 10, left: 14, backgroundColor: '#f59e0b', paddingHorizontal: 12, paddingVertical: 5, borderRadius: 12, borderBottomWidth: 3, borderBottomColor: '#b45309' },
+  comboText: { color: '#1f1300', fontWeight: '900' },
 
-  resultOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(3,10,24,0.92)', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 6 },
-  resultTitle: { fontSize: 46, fontWeight: '900' },
-  resultSub: { color: '#94a3b8', fontSize: 15, marginBottom: 18, textAlign: 'center' },
+  actions: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 12, paddingHorizontal: 14, paddingTop: 10, paddingBottom: 30 },
+  actBtn: { flex: 1, height: 78, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 5, borderBottomColor: 'rgba(0,0,0,0.3)', overflow: 'hidden' },
+  actBig: { flex: 1.6, height: 96, borderRadius: 26 },
+  actLabel: { color: 'white', fontWeight: '900', fontSize: 12, marginTop: 2, letterSpacing: 0.5 },
+  cdTrack: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, backgroundColor: 'rgba(0,0,0,0.25)' },
+  cdFill: { height: '100%', backgroundColor: 'rgba(255,255,255,0.85)' },
+
+  introOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(3,10,24,0.9)', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  introCard: { width: '78%', alignItems: 'center', paddingVertical: 14, borderRadius: 26, borderWidth: 3 },
+  introMe: { backgroundColor: 'rgba(37,99,235,0.35)', borderColor: '#38bdf8', alignSelf: 'flex-start', marginLeft: 14 },
+  introOpp: { backgroundColor: 'rgba(220,38,38,0.35)', borderColor: '#f87171', alignSelf: 'flex-end', marginRight: 14 },
+  introSprite: { width: 130, height: 130 },
+  introName: { color: 'white', fontSize: 24, fontWeight: '900', textTransform: 'capitalize' },
+  vs: { color: '#facc15', fontSize: 64, fontWeight: '900', textShadowColor: 'rgba(250,204,21,0.7)', textShadowRadius: 18 },
+  fightText: { position: 'absolute', color: '#fde047', fontSize: 62, fontWeight: '900', textShadowColor: 'black', textShadowRadius: 12, backgroundColor: 'rgba(220,38,38,0.9)', paddingHorizontal: 24, borderRadius: 18, overflow: 'hidden' },
+
+  resultOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(3,10,24,0.93)', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 6 },
+  resultTitle: { fontSize: 48, fontWeight: '900' },
+  resultSub: { color: '#94a3b8', fontSize: 15, marginBottom: 18 },
   btn: { backgroundColor: '#2563eb', paddingHorizontal: 40, paddingVertical: 14, borderRadius: 16, borderBottomWidth: 5, borderBottomColor: '#1e40af' },
   btnText: { color: 'white', fontWeight: '900', fontSize: 17 },
-
-  // NUEVO: pantalla "búsqueda agotada"
-  noRoot: { flex: 1, backgroundColor: '#1d2150', alignItems: 'center', justifyContent: 'space-between', paddingTop: 74, paddingBottom: 40, paddingHorizontal: 20, overflow: 'hidden' },
-  noGlowA: { position: 'absolute', top: -80, left: -70, width: 260, height: 260, borderRadius: 130, backgroundColor: 'rgba(168,85,247,0.22)' },
-  noGlowB: { position: 'absolute', bottom: -90, right: -80, width: 300, height: 300, borderRadius: 150, backgroundColor: 'rgba(56,189,248,0.18)' },
-  noTitle: { color: 'white', fontSize: 30, fontWeight: '900', letterSpacing: 1, textAlign: 'center' },
-  noTitleAccent: { color: '#fb923c' },
-  noSub: { color: '#e2e8f0', fontSize: 15, textAlign: 'center', marginTop: 10, paddingHorizontal: 10, lineHeight: 21 },
-  noCard: {
-    flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 12, paddingHorizontal: 28, borderRadius: 18,
-    backgroundColor: 'rgba(15,40,70,0.65)', borderWidth: 2, borderColor: 'rgba(125,211,252,0.75)',
-    shadowColor: '#7dd3fc', shadowOpacity: 0.7, shadowRadius: 16, shadowOffset: { width: 0, height: 0 },
-  },
-  noClock: { color: '#fdba74', fontSize: 44, fontWeight: '800', fontVariant: ['tabular-nums'], textShadowColor: '#fb923c', textShadowRadius: 12, textShadowOffset: { width: 0, height: 0 } },
-  noExpired: { color: '#fed7aa', fontSize: 12, fontWeight: '800', letterSpacing: 2 },
-  noStage: { width: '100%', height: 280, alignItems: 'center', justifyContent: 'flex-end' },
-  platOuter: { position: 'absolute', bottom: 8, width: 320, height: 96, borderRadius: 160, borderWidth: 2, borderColor: 'rgba(125,211,252,0.55)' },
-  platInner: { position: 'absolute', bottom: 22, width: 230, height: 66, borderRadius: 115, borderWidth: 3, borderColor: 'rgba(125,211,252,0.9)', backgroundColor: 'rgba(125,211,252,0.16)' },
-  platWave: { position: 'absolute', bottom: 22, width: 230, height: 66, borderRadius: 115, borderWidth: 2, borderColor: '#7dd3fc' },
-  noSprite: { width: 190, height: 190 },
-  noButtons: { flexDirection: 'row', gap: 14, alignSelf: 'stretch' },
-  noBtn: { flex: 1, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  noBtnGhost: { borderWidth: 2, borderColor: '#6ee7b7', backgroundColor: 'rgba(110,231,183,0.08)' },
-  noBtnGhostText: { color: '#6ee7b7', fontWeight: '800', letterSpacing: 1 },
-  noBtnSolid: { backgroundColor: '#34d399' },
-  noBtnSolidText: { color: 'white', fontWeight: '800', letterSpacing: 1 },
-  shot: { position: 'absolute', top: 0, left: 0, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', shadowOpacity: 0.9, shadowRadius: 14, shadowOffset: { width: 0, height: 0 }, elevation: 8 },
-  shotCore: { width: 16, height: 16, borderRadius: 8, backgroundColor: 'white' },
 });
