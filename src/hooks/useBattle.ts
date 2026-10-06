@@ -5,12 +5,13 @@ import { supabase } from '../services/supabase';
 
 /** Evento cosmético que un celular le avisa al otro. No afecta la vida. */
 export interface BattleFx {
-  from: string;                    // user id de quien actuó
-  kind: 'attack' | 'dodge';
+  from: string;
+  kind: 'attack_start' | 'attack' | 'dodge';
   damage?: number;
   multiplier?: number;
   move?: string;
-  at: number;                      // para que dos eventos iguales seguidos se noten
+  dir?: 1 | -1;
+  at: number;
 }
 
 export function useBattle(battleId: string | null) {
@@ -57,15 +58,24 @@ export function useBattle(battleId: string | null) {
 
   /** Pide la acción al servidor y avisa al rival para que anime. */
   const act = useCallback(
-    async (action: 'attack' | 'dodge'): Promise<ActResult> => {
+    async (action: 'attack' | 'dodge', dir: 1 | -1 = 1): Promise<ActResult> => {
       if (!battleId || !userId) return { ok: false, reason: 'error' };
-      const res = await battleApi.act(battleId, action);
-      if (res.ok) {
-        const payload: BattleFx =
-          res.action === 'attack'
-            ? { from: userId, kind: 'attack', damage: res.damage, multiplier: res.multiplier, move: res.move, at: Date.now() }
-            : { from: userId, kind: 'dodge', at: Date.now() };
+
+      const send = (payload: BattleFx) =>
         channelRef.current?.send({ type: 'broadcast', event: 'fx', payload });
+
+      // Avisos inmediatos: el rival los ve sin esperar al servidor
+      if (action === 'attack') send({ from: userId, kind: 'attack_start', at: Date.now() });
+      if (action === 'dodge') send({ from: userId, kind: 'dodge', dir, at: Date.now() });
+
+      const res = await battleApi.act(battleId, action);
+
+      // El resultado del ataque (daño real) sí espera al servidor
+      if (res.ok && res.action === 'attack') {
+        send({
+          from: userId, kind: 'attack', damage: res.damage,
+          multiplier: res.multiplier, move: res.move, at: Date.now(),
+        });
       }
       return res;
     },

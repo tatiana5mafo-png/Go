@@ -17,7 +17,7 @@ export default function App() {
         <View style={styles.root}>
           <View style={styles.content}>
             {tab === 'map' && <GameMapScreen />}
-            {tab === 'dex' && <PokedexScreen  />}
+            {tab === 'dex' && <PokedexScreen />}
             {tab === 'bag' && <BackpackScreen />}
           </View>
           <BottomTabs tab={tab} onChange={setTab} />

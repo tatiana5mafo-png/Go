@@ -27,6 +27,15 @@ const DODGE_COOLDOWN_MS = 3000;
 const SWIPE_PX = 50;
 const WAIT_LIMIT_MS = 2 * 60 * 1000; // NUEVO: tiempo de espera de rival (para probar rápido, pon 15_000)
 
+const PROJ_MS = 450;          // lo que tarda el ataque en cruzar la arena
+const DODGE_WINDOW_MS = 900;  // tiempo que tu Pokémon queda "esquivando"
+
+const ME_RANGE: [number, number] = [-30, 110];
+const OPP_RANGE: [number, number] = [-100, 40];
+const offsetOf = (d: number, r: [number, number]) => (d < 0 ? -d * r[0] : d * r[1]);
+
+interface Shot { id: number; from: 'me' | 'opp'; miss: boolean; color: string; fromX: number; toX: number }
+
 const JOIN_ERRORS: Record<string, string> = {
   gym_not_found: 'Ese gimnasio no existe.',
   too_far: 'Estás demasiado lejos del gimnasio.',
@@ -82,6 +91,42 @@ const DamagePop = memo(function DamagePop({ pop }: { pop: Pop }) {
   );
 });
 
+/** Bola de energía que cruza la arena. Si falla, pasa de largo. */
+const Projectile = memo(function Projectile({ shot, w, h }: { shot: Shot; w: number; h: number }) {
+  const v = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(v, { toValue: 1, duration: PROJ_MS, easing: Easing.in(Easing.quad), useNativeDriver: true }).start();
+  }, [v]);
+
+  // centros aproximados de cada sprite (mismas posiciones que oppSpot / meSpot)
+  const opp = { x: w - 30 - 75, y: 6 + 75 };
+  const me = { x: 14 + 95, y: h - 22 - 95 };
+  const a = { ...(shot.from === 'opp' ? opp : me) };
+  const b = { ...(shot.from === 'opp' ? me : opp) };
+  a.x += shot.fromX;
+  b.x += shot.toX;
+  const k = shot.miss ? 1.45 : 1; // si falla, sigue de largo
+  const ex = a.x + (b.x - a.x) * k;
+  const ey = a.y + (b.y - a.y) * k;
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[s.shot, {
+        backgroundColor: shot.color, shadowColor: shot.color,
+        opacity: v.interpolate({ inputRange: [0, 0.1, 0.8, 1], outputRange: [0, 1, 1, shot.miss ? 0 : 1] }),
+        transform: [
+          { translateX: v.interpolate({ inputRange: [0, 1], outputRange: [a.x - 18, ex - 18] }) },
+          { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [a.y - 18, ey - 18] }) },
+          { scale: v.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.5, 1.2, 1] }) },
+        ],
+      }]}
+    >
+      <View style={s.shotCore} />
+    </Animated.View>
+  );
+});
+
 /** Aviso de tipo que rebota. */
 const Banner = memo(function Banner({ msg }: { msg: Msg }) {
   const v = useRef(new Animated.Value(0)).current;
@@ -104,8 +149,11 @@ const Banner = memo(function Banner({ msg }: { msg: Msg }) {
 
 /** Sprite que flota; recibe un valor externo para temblar al ser golpeado. */
 const Fighter = memo(function Fighter({
-  uri, size, shake, flash, delay,
-}: { uri: string | null; size: number; shake: Animated.Value; flash: Animated.Value; delay: number }) {
+  uri, size, shake, flash, dodge, range, delay,
+}: {
+  uri: string | null; size: number; shake: Animated.Value; flash: Animated.Value;
+  dodge: Animated.Value; range: [number, number]; delay: number;
+}) {
   const bob = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     const loop = Animated.loop(Animated.sequence([
@@ -118,9 +166,12 @@ const Fighter = memo(function Fighter({
   }, [bob, delay]);
   return (
     <Animated.View style={{
+      opacity: dodge.interpolate({ inputRange: [-1, 0, 1], outputRange: [0.55, 1, 0.55] }),
       transform: [
         { translateY: bob.interpolate({ inputRange: [0, 1], outputRange: [0, -8] }) },
         { translateX: shake.interpolate({ inputRange: [-1, 1], outputRange: [-16, 16] }) },
+        { translateX: dodge.interpolate({ inputRange: [-1, 0, 1], outputRange: [range[0], 0, range[1]] }) },
+        { rotate: dodge.interpolate({ inputRange: [-1, 1], outputRange: ['-14deg', '14deg'] }) },
       ],
     }}>
       {uri ? <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="contain" /> : <View style={{ width: size, height: size }} />}
@@ -156,6 +207,21 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
   const oppShake = useRef(new Animated.Value(0)).current;
   const myFlash = useRef(new Animated.Value(0)).current;
   const oppFlash = useRef(new Animated.Value(0)).current;
+
+  const [shots, setShots] = useState<Shot[]>([]);
+  const [arena, setArena] = useState({ w: 0, h: 0 });
+  const myDodge = useRef(new Animated.Value(0)).current;
+  const oppDodge = useRef(new Animated.Value(0)).current;
+  const dodgeUntil = useRef(0);
+  const oppShotAt = useRef(0);
+
+  const myDodgeX = useRef(0);
+  const oppDodgeX = useRef(0);
+  useEffect(() => {
+    const a = myDodge.addListener(({ value }) => { myDodgeX.current = value; });
+    const b = oppDodge.addListener(({ value }) => { oppDodgeX.current = value; });
+    return () => { myDodge.removeListener(a); oppDodge.removeListener(b); };
+  }, [myDodge, oppDodge]);
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
 
@@ -219,43 +285,92 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
 
   const say = useCallback((text: string, color: string) => setMsg({ id: ++counter.current, text, color }), []);
 
+  const launch = useCallback((from: 'me' | 'opp', miss: boolean, color: string) => {
+    const id = ++counter.current;
+    const myOff = offsetOf(myDodgeX.current, ME_RANGE);
+    const oppOff = offsetOf(oppDodgeX.current, OPP_RANGE);
+    const shot: Shot = from === 'me'
+      ? { id, from, miss, color, fromX: myOff, toX: oppOff }
+      : { id, from, miss, color, fromX: oppOff, toX: myOff };
+    setShots((p) => [...p.slice(-3), shot]);
+    setTimeout(() => mounted.current && setShots((p) => p.filter((x) => x.id !== id)), PROJ_MS + 150);
+  }, []);
+
+  const playDodge = useCallback((val: Animated.Value, dir: 1 | -1) => {
+    Animated.sequence([
+      Animated.timing(val, { toValue: dir, duration: 140, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+      Animated.delay(DODGE_WINDOW_MS - 360),
+      Animated.timing(val, { toValue: 0, duration: 220, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+    ]).start();
+  }, []);
+
   const typeText = (mult: number) =>
     mult === 0 ? { t: 'No afecta', c: '#6b7280' }
-    : mult > 1 ? { t: '¡SÚPER EFECTIVO!', c: '#f59e0b' }
-    : mult < 1 ? { t: 'Poco efectivo', c: '#64748b' }
-    : null;
+      : mult > 1 ? { t: '¡SÚPER EFECTIVO!', c: '#f59e0b' }
+        : mult < 1 ? { t: 'Poco efectivo', c: '#64748b' }
+          : null;
 
   // Lo que hace el rival (solo animación; la vida llega por Postgres Changes)
   useEffect(() => {
     if (!fx || fx.from === userId) return;
-    if (fx.kind === 'attack') {
-      hit('me');
-      addPop('me', `-${fx.damage ?? 0}`, '#f87171');
-    } else {
-      say('El rival esquiva', '#38bdf8');
+
+    if (fx.kind === 'attack_start') {
+      oppShotAt.current = Date.now();
+      launch('opp', false, '#fb923c');   // la bola sale ya
+      return;
     }
-  }, [fx, userId, hit, addPop, say]);
+
+    if (fx.kind === 'attack') {
+      const dmg = fx.damage ?? 0;
+      const miss = dmg <= 0;
+      const wait = Math.max(0, PROJ_MS - (Date.now() - oppShotAt.current));
+      setTimeout(() => {
+        if (!mounted.current) return;
+        if (miss) {
+          addPop('me', 'Esquivado', '#38bdf8');
+          say('¡Lo esquivaste!', '#38bdf8');
+        } else {
+          hit('me');
+          addPop('me', `-${dmg}`, '#f87171');
+        }
+      }, wait);
+      return;
+    }
+
+    // kind === 'dodge'
+    playDodge(oppDodge, fx.dir ?? -1);
+    say('El rival esquiva', '#38bdf8');
+  }, [fx, userId, hit, addPop, say, launch, playDodge, oppDodge]);
 
   const attack = useCallback(async () => {
     const t = Date.now();
     if (t - lastAttack.current < ATTACK_COOLDOWN_MS) return;
     lastAttack.current = t;
+
+    launch('me', false, '#fde047');      // tu bola sale al instante
     const res = await act('attack');
     if (!res.ok || res.action !== 'attack') return;
-    hit('opp');
-    addPop('opp', res.damage > 0 ? `-${res.damage}` : '0', res.dodged ? '#38bdf8' : '#fde047');
-    const tt = typeText(Number(res.multiplier));
-    if (res.dodged) say('¡Esquivado a medias!', '#38bdf8');
-    else if (tt) say(tt.t, tt.c);
-  }, [act, hit, addPop, say]);
 
-  const dodge = useCallback(async () => {
-    if (!dodgeReady) return;
+    const fullMiss = res.dodged && res.damage <= 0;
+    const wait = Math.max(0, PROJ_MS - (Date.now() - t));
+    setTimeout(() => {
+      if (!mounted.current) return;
+      if (!fullMiss) hit('opp');
+      addPop('opp', res.damage > 0 ? `-${res.damage}` : '0', res.dodged ? '#38bdf8' : '#fde047');
+      const tt = typeText(Number(res.multiplier));
+      if (res.dodged) say(fullMiss ? '¡Te esquivó!' : '¡Esquivado a medias!', '#38bdf8');
+      else if (tt) say(tt.t, tt.c);
+    }, wait);
+  }, [act, hit, addPop, say, launch, typeText]);
+
+  const dodge = useCallback(async (dir: 1 | -1 = 1) => {
+    if (!dodgeReady) { say('Esquiva recargando...', '#94a3b8'); return; }
     setDodgeReady(false);
     setTimeout(() => mounted.current && setDodgeReady(true), DODGE_COOLDOWN_MS);
-    const res = await act('dodge');
-    if (res.ok) say('¡Esquiva!', '#38bdf8');
-  }, [act, dodgeReady, say]);
+    dodgeUntil.current = Date.now() + DODGE_WINDOW_MS;
+    playDodge(myDodge, dir);
+    await act('dodge', dir);
+  }, [act, dodgeReady, say, playDodge, myDodge]);
 
   // El PanResponder se crea una vez y usa siempre la última versión de los manejadores
   const handlers = useRef({ attack, dodge });
@@ -263,7 +378,7 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
   const pan = useRef(PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderRelease: (_, g) => {
-      if (Math.abs(g.dx) > SWIPE_PX && Math.abs(g.dx) > Math.abs(g.dy)) handlers.current.dodge();
+      if (Math.abs(g.dx) > SWIPE_PX && Math.abs(g.dx) > Math.abs(g.dy)) handlers.current.dodge(g.dx > 0 ? 1 : -1);
       else handlers.current.attack();
     },
   })).current;
@@ -381,10 +496,16 @@ export default function BattleScreen({ gymId, gymName, position, onClose }: Prop
       </View>
 
       {/* Arena: tocar ataca, deslizar esquiva */}
-      <View style={s.arena} {...pan.panHandlers}>
+      <View style={s.arena} {...pan.panHandlers}
+        onLayout={(e) => setArena({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height })}>
         <View style={s.floorOuter}><View style={s.floorInner} /></View>
-        <View style={s.oppSpot}><Fighter uri={opp?.sprite_url ?? null} size={150} shake={oppShake} flash={oppFlash} delay={0} /></View>
-        <View style={s.meSpot}><Fighter uri={myPoke?.spriteUrl ?? null} size={190} shake={myShake} flash={myFlash} delay={400} /></View>
+        <View style={s.oppSpot}>
+          <Fighter uri={opp?.sprite_url ?? null} size={150} shake={oppShake} flash={oppFlash} dodge={oppDodge} range={[-100, 40]} delay={0} />
+        </View>
+        <View style={s.meSpot}>
+          <Fighter uri={myPoke?.spriteUrl ?? null} size={190} shake={myShake} flash={myFlash} dodge={myDodge} range={[-30, 110]} delay={400} />
+        </View>
+        {arena.w > 0 && shots.map((sh) => <Projectile key={sh.id} shot={sh} w={arena.w} h={arena.h} />)}
         {pops.map((p) => <DamagePop key={p.id} pop={p} />)}
         {msg && <Banner key={msg.id} msg={msg} />}
       </View>
@@ -644,4 +765,6 @@ const s = StyleSheet.create({
   noBtnGhostText: { color: '#6ee7b7', fontWeight: '800', letterSpacing: 1 },
   noBtnSolid: { backgroundColor: '#34d399' },
   noBtnSolidText: { color: 'white', fontWeight: '800', letterSpacing: 1 },
+  shot: { position: 'absolute', top: 0, left: 0, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', shadowOpacity: 0.9, shadowRadius: 14, shadowOffset: { width: 0, height: 0 }, elevation: 8 },
+  shotCore: { width: 16, height: 16, borderRadius: 8, backgroundColor: 'white' },
 });
